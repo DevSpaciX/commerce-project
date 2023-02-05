@@ -2,7 +2,6 @@ from datetime import datetime
 from django.db import models
 
 
-
 class Day(models.Model):
     date = models.DateField(default=datetime.now().strftime("%d %b, %Y"))
 
@@ -39,7 +38,7 @@ class Training(models.Model):
     social = models.CharField(max_length=35)
     day_train = models.CharField(max_length=10)
     time_train = models.CharField(max_length=10)
-    plan = models.ForeignKey(TrainingPlan,on_delete=models.CASCADE)
+    plan = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} {self.plan}"

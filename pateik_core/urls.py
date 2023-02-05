@@ -23,4 +23,3 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("pateik_app.urls", namespace="pateik")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

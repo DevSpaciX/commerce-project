@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">				
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Обо мне
+							</h1>	
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->	
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+					<div class="row align-items-center justify-content-between">
+						<div class="col-lg-6 col-md-6 home-about-left">
+							<img style="border-radius: 20px" class="img-fluid" src="../static/img/Front_patrik.jpg" alt="">
+						</div>
+						<div class="col-lg-5 col-md-6 home-about-right">
+							<h6>Обо мне</h6>
+							<h1 class="text-uppercase">Биография</h1>
+							<p>
+                Меня зовут Патрик Захарченко, с детства я увлекался компьютерными играми и однажды открыл для себя Fortnite.
+                По-началу я просто играл с друзьями, день ото дня меня затягивала игра своим потрясающим геймплеем и сам того
+                мой уровень игры становился выше с каждым днем. Началом моей киберспортивной карьеры стал Турнир Fortnite Summer Skirmish
+                где мне удалось выиграть 34 000$ на двоих. А совсем скоро мной заинтересовалась команда Gambit Esports!
+							</p>
+{#							<a style="font-family: 'Open Sans SemiBold'" href="{% url "pateik:payment" pk=2 %}" class="primary-btn text-uppercase">Тренироваться</a>#}
+						</div>
+						<div class="col-lg-12 pt-60">
+							<p>
+                В период с 2018-2020 год мне удалось выиграть более 215 000$, а также поиграть в таких крупных турнирах как - FNCS Season X, Australian Open 2020, Secret Skirmish и многие другие .
+							</p>
+							<p>
+                Сейчас же я персональный тренер! И хочу поделиться опытом с людьми, которое хотят начать быстрее прогрессировать в игре, а в будущем - выиграть турниры!
+							</p>
+						</div>
+					</div>
+          </div>
+      </section>
+
+			<!-- End home-about Area -->	
+
+			<!-- Start timeline Area -->
+			<section class="timeline pb-120">
+            <div class="text-center">
+                <div class="menu-content pb-70">
+                    <div class="title text-center">
+                        <h1 style="margin-top: 40px" class="mb-10">Мои Достижения</h1>
+                        <p>Список моих самых крупных турниров</p>
+                    </div>
+                </div>
+            </div>				
+			  <ul>
+			    <li>
+			      <div class="content">
+              <img style="width: 100px;height: 100px" class="img-fluid mx-auto d-block mb-30" src="../static/img/FNCS_SeasonX.png" alt="">
+			        <h4>
+			          <time>FNCS: Season X - Grand Finals: Europe</time>
+			        </h4>
+			        <p style="font-family: 'Open Sans SemiBold'"><b>Место:</b> 2</p>
+			        <p style="font-family: 'Open Sans SemiBold'"><b>Результат: </b>72 000$</p>
+			      </div>
+			    </li>
+			    <li>
+			      <div class="content">
+			      	<img style="width: 100px;height: 100px;" class="img-fluid mx-auto d-block mb-30" src="../static/img/Fall_Skirmish_Series.webp" alt="">
+			        <h4>
+			          <time>Fortnite Fall Skirmish Series</time>
+			        </h4>
+              <p style="font-family: 'Open Sans SemiBold'"><b>Место:</b> 7</p>
+			        <p style="font-family: 'Open Sans SemiBold'"><b>Результат: </b>63,750$</p>
+			      </div>
+			    </li>
+			    <li>
+			      <div class="content">
+              <img style="width: 100px;height: 100px;" class="img-fluid mx-auto d-block mb-30" src="../static/img/Secret%20skirmish.png" alt="">
+			        <h4>
+			          <time>Fortnite Secret Skirmish Series</time>
+			        </h4>
+              <p style="font-family: 'Open Sans SemiBold'"><b>Место:</b> 6</p>
+			        <p style="font-family: 'Open Sans SemiBold'"><b>Результат: </b>24,000$</p>
+			      </div>
+			    </li>
+          <li>
+			      <div class="content">
+              <img style="width: 100px;height: 100px;" class="img-fluid mx-auto d-block mb-30" src="../static/img/fortnite-summer-skirmish-series.png" alt="">
+			        <h4>
+			          <time>Fortnite Summer Skirmish Series</time>
+			        </h4>
+              <p style="font-family: 'Open Sans SemiBold'"><b>Место:</b> 2</p>
+			        <p style="font-family: 'Open Sans SemiBold'"><b>Результат: </b>24,000$</p>
+			      </div>
+			    </li>
+
+			  </ul>
+			</section>		
+
+			<!-- End timeline Area -->
+
+
+			<!-- Start testimonial Area -->
+{#		    <section class="testimonial-area section-gap">#}
+{#		        <div class="container">#}
+{#		            <div class="row d-flex justify-content-center">#}
+{#		                <div class="menu-content pb-70 col-lg-8">#}
+{#		                    <div class="title text-center">#}
+{#		                        <h1 class="mb-10">Client’s Feedback About Me</h1>#}
+{#		                        <p>It is very easy to start smoking but it is an uphill task to quit it. Ask any chain smoker or even a person.</p>#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		            </div>#}
+{#		            <div class="row">#}
+{#		                <div class="active-testimonial">#}
+{#		                    <div class="single-testimonial item d-flex flex-row">#}
+{#		                        <div class="thumb">#}
+{#		                            <img class="img-fluid" src="../static/img/elements/user1.png" alt="">#}
+{#		                        </div>#}
+{#		                        <div class="desc">#}
+{#		                            <p>#}
+{#		                                Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills, the bigger the payoff you.		     #}
+{#		                            </p>#}
+{#		                            <h4>Harriet Maxwell</h4>#}
+{#		                            <p>CEO at Google</p>#}
+{#		                        </div>#}
+{#		                    </div>#}
+{#		                    <div class="single-testimonial item d-flex flex-row">#}
+{#		                        <div class="thumb">#}
+{#		                            <img class="img-fluid" src="../static/img/elements/user2.png" alt="">#}
+{#		                        </div>#}
+{#		                        <div class="desc">#}
+{#		                            <p>#}
+{#		                                A purpose is the eternal condition for success. Every former smoker can tell you just how hard it is to stop smoking cigarettes. However.#}
+{#		                            </p>#}
+{#		                            <h4>Carolyn Craig</h4>#}
+{#		                            <p>CEO at Facebook</p>#}
+{#		                        </div>#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		            </div>#}
+{#		        </div>#}
+{#		    </section>#}
+		    <!-- End testimonial Area -->			
+
+		    <!-- Start brands Area -->
+<section class="brands-area">
+  <div class="container">
+    <div class="brand-wrap">
+      <div
+        class="row align-items-center active-brand-carusel justify-content-start no-gutters"
+      >
+        <div class="col single-brand">
+          <a href="#">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="/static/img/icons8-twitch.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="#">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="/static/img/icons8-ютуб%20(1).svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="#">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="../static/img/icons8-твиттер.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="#">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="../static/img/icons8-instagram.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="#">
+            <img style="width: 40px;height: 80px"  class="mx-auto" src="../static/img/icons8-телеграмма-app.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+		    <!-- End brands Area -->
+
+            <!-- End footer Area -->
+        {% endblock %}
