@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Тренироваться
+							</h1>
+              <h5 style="margin-top: 10px">
+                Твой тариф {{ train.plan }} выбери время и день для старта!<br>
+                К оплате - {{ train.price }} $
+              </h5>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+          <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading">
+                  <ul class="slots-list"></ul>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
+                  <br>
+                    <form method="POST" id="paymentForm" data-times-url="{% url 'pateik:ajax_load_times' %}" class="form">
+                    {% csrf_token %}
+
+ {#   -------------------USER NAME--------------------- #}
+                        <div class="input-group" >
+                              {{ form.name }}
+                        </div>
+
+{#   -------------------CHOSE DATE--------------------- #}
+
+                        <div class="input-group" >
+                                  {{ form.day }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------CHOSE TIME--------------------- #}
+
+                        <div class="input-group">
+                                {{ form.time }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------DISCORD--------------------- #}
+
+                        <div class="input-group" >
+                              {{ form.discord }}
+                        </div>
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+			</section>
+
+			<!-- Start faq Area -->
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+          <dl class="accordion">
+            <dt>
+              <a href="">Могу ли я взять Дуо напарника?</a>
+            </dt>
+            <dd>
+              Да , только если твой тариф - Базовый и выше
+            </dd>
+            <dt>
+              <a href="">Я выбрал несколько тренировок , когда будет следующая?</a>
+            </dt>
+            <dd>
+              При выборе Тарифа Про и выше - бронируется только первая тренировка . Остальные планируются индивидуально с тренером в конце первой тренировки
+            </dd>
+            <dt>
+              <a href="">С какой платформы можно заниматься?</a>
+            </dt>
+            <dd>
+              Тренировки могут проходить на любой платформе!
+            </dd>
+            <dt>
+              <a href="">У меня нет Дискорда , где будет коммуникация?</a>
+            </dt>
+            <dd>
+              Коммуникация во время тренировке будет проходить в голосовом чате игры или в Дискорд
+            </dd>
+            <dt>
+              <a href="">Можно ли вернуть деньги за тренировки?</a>
+            </dt>
+            <dd>
+              Вернуть средства невозможно , но мы даём 100% гарантию ,что все тренировки будут успешно выполнены
+            </dd>
+            <dt>
+              <a href="">Я случайно указал не верные  контактные данные , что делать?</a>
+            </dt>
+            <dd>
+              Если вдруг вы указали неверные контактные данные - свяжись с нашей поддержкой <a target="_blank" href="https://t.me/pateeee1k">t.me/pateeee1k</a> - мы будем рады тебе помочь
+            </dd>
+          </dl>
+
+          </div>
+        </div>
+      </div>
+			<!-- End faq Area -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+              jQuery(document).ready(function($){
+                $("#id_day").change(function () {
+                  const url = $("#paymentForm").attr("data-times-url");
+                  const dayId = $(this).val();
+
+                $.ajax({
+                    url: url,
+                    data: {
+                        'day': dayId
+                    },
+                    success: function (data) {
+                        $("#id_time").html(data);
+                    }
+                });
+              });
+            });
+            </script>
+
+            <script>
+
+            </script>
+  <script type="text/javascript">
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+      var checkoutButton = document.getElementById("checkout-button");
+      checkoutButton.addEventListener("click", function () {
+          fetch("{% url "pateik:payment" pk=train.pk %}", {
+              method: "POST",
+              headers: {
+                  'X-CSRFToken': csrftoken
+              }
+          })
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (session) {
+                  return stripe.redirectToCheckout({sessionId: session.id});
+              })
+              .then(function (result) {
+                  if (result.error) {
+                      alert(result.error.message);
+                  }
+              })
+              .catch(function (error) {
+                  console.error("Error:", error);
+              });
+                      });
+                  </script>
+{% endblock %}
