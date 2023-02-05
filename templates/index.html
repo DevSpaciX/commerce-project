@@ -1,0 +1,546 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- start banner Area -->
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<!-- start banner Area -->
+<section class="banner-area">
+  <div class="container">
+    <div class="row fullscreen align-items-center justify-content-between">
+      <div class="col-lg-6 col-md-6 banner-left">
+        <h6>Привет, это я -</h6>
+        <h1>PATEIK</h1>
+        <p class="mb-4">
+          В прошлом профессиональный игрок Fortnite, сейчас же - персональный тренер. Ознакомься с информацией ниже и, возможно, именно ты станешь новым FNCS Champion!
+        </p>
+        <a
+          style="font-family: 'Noto Sans Display Bold', sans-serif;"
+          href="#price-area"
+          class="primary-btn text-uppercase"
+        >
+          Тренироваться
+        </a>
+      </div>
+      <div class="col-lg-6 col-md-6 banner-right d-flex align-self-end">
+        <img
+          style="padding-left: 20px;"
+          class="img-fluid"
+          src="../static/img/Pate1k_charachter.png"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start home-about Area -->
+<section class="home-about-area pt-120">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-6 col-md-6 home-about-left">
+        <img class="img-fluid" src="../static/img/Patrik2.png" alt="" />
+      </div>
+      <div class="col-lg-5 col-md-6 home-about-right">
+        <h6>Обо мне</h6>
+        <h1 class="text-uppercase">Биография</h1>
+        <p>
+
+          Fortnite мне посоветовали одноклассники они активно играли в Fortnite и начали советовать и звать сыграть вместе,
+          долго не думая я согласился и мне понравилась данная игра. Далее мой стиль игры приглянулся Gambit и меня пригласили играть за данную организацию.
+          На Пике карьеры занимал 14 строчку по рейтингу среди лучших игроков Fortnite, а суммарный заработок составляет более 208 000$.
+        </p>
+{#        <a href="{% url "pateik:about" %}" class="primary-btn text-uppercase">Подробнее</a>#}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End home-about Area -->
+
+<!-- Start services Area -->
+<section class="services-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content col-lg-7">
+        <div class="title text-center">
+          <h1 class="mb-10">Ты научишся...</h1>
+          <p>
+            За время тренировки тебе предстоит многому научится , конечно , всё
+            зависит от твоего уровня , но я уверен , совсем скоро ты станешь
+            профи !
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img src="../static/img/Fortnite_logo.png" alt="">
+          <a href="#"><h4>Строиться</h4></a>
+          <p>
+            В начале пути необходимо ознакомиться со всеми базовыми аспектами игры, чтобы ты мог уверенно действовать
+          </p>
+        </div>
+      </div>
+            <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img src="../static/img/Fn_logo_2.png" alt="">
+          <a href="#"><h4>Защищаться</h4></a>
+          <p>
+            Выживать - одно из самых главных правил игры! Освоив его ты с легкостью сможешь доживать до конца игры и забирать заветную победу!
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img src="../static/img/FN_logo_3.png" alt="">
+          <a href="#"><h4>Правильно атаковать</h4></a>
+          <p>
+            Научиться качественно атаковать противника - залог скорейшего прогресса, а я тебе в этом всегда помогу и подскажу!
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img src="../static/img/FN_logo_4.png" alt="">
+          <a href="#"><h4>Играть в команде</h4></a>
+          <p>
+            Для слаженной игры в команде - необходимо, что бы каждый участник понимал свою роль, а также правильно доносил информацию, уверен у тебя это получится !
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img src="../static/img/FN_logo_5.png" alt="">
+          <a href="#"><h4>Играть в лейте</h4></a>
+          <p>
+            Лейт - важнейшая стадия игры, где определяется победитель. Тебе предстоит научиться принимать решения с холодной головой и наконец побеждать!
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="single-services">
+          <img style="height: 150px;width: 190px" src="../static/img/FNCS_SeasonX.png" alt="">
+          <a href="#"><h4>Выигрывать на турнирах</h4></a>
+          <p>
+            Играть против лучших - скорейший путь к прогрессу! Тут тебе предстоит отточить все свои сильные стороны до идеала, что бы однажды - поднять кубок над своей головой!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End services Area -->
+
+<!-- Start fact Area -->
+<section class="facts-area section-gap" id="facts-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 single-fact">
+        <h1 class="counter">10000</h1>
+        <p>Часов в игре</p>
+      </div>
+      <div class="col-lg-3 col-md-6 single-fact">
+        <h1 class="counter">215000</h1>
+        <p>Выиграно $ с турниров</p>
+      </div>
+      <div class="col-lg-3 col-md-6 single-fact">
+        <h1 class="counter">56</h1>
+        <p>Довольных учеников</p>
+      </div>
+      <div class="col-lg-3 col-md-6 single-fact">
+        <h1 class="counter">553</h1>
+        <p>Турниров сыграно</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end fact Area -->
+
+
+  <!-- Start price Area -->
+<section class="price-area section-gap" id="price-area">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">Выбери свою тренировку!</h1>
+          <p>
+            Выбирай тариф - бронируй время - побеждай!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        style="border-radius: 15px 0 0 15px;"
+        class="col-lg-3 col-md-6 single-price"
+      >
+        <div class="top-part">
+          <h1 class="package-no">01</h1>
+          <h4>Тестовый</h4>
+          <p style="font-family: 'Open Sans SemiBold';" class="mt-10">
+            30 минут практики
+          </p>
+        </div>
+        <div class="package-list">
+          <ul>
+            <li>Игра 1 на 1</li>
+            <li>Помощь в выборе настроек</li>
+            <li>Оценка сильных и слабых сторон</li>
+          </ul>
+        </div>
+        <div class="bottom-part">
+          <h1>10$</h1>
+{#          <a class="price-btn text-uppercase" href="{% url "pateik:payment" pk=1 %}">Тренироваться</a>#}
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 single-price">
+        <div class="top-part">
+          <h1 class="package-no">02</h1>
+          <h4>Базовый</h4>
+          <p style="font-family: 'Open Sans SemiBold';" class="mt-10">
+            Час занятия
+          </p>
+        </div>
+        <div class="package-list">
+          <ul>
+            <li>Возможность взять друга</li>
+            <li>Работа с моралью</li>
+            <li>Игра в арену</li>
+          </ul>
+        </div>
+        <div class="bottom-part">
+          <h1>20$</h1>
+{#          <a class="price-btn text-uppercase" href="{% url "pateik:payment" pk=2 %}">Тренироваться</a>#}
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 single-price">
+        <div class="top-part">
+          <h1 class="package-no">03</h1>
+          <h4>Премиум</h4>
+          <p style="font-family: 'Open Sans SemiBold';" class="mt-10">
+            3 Тренировки
+          </p>
+        </div>
+        <div class="package-list">
+          <ul>
+            <li>Закрытые SOLO/DUO игры</li>
+            <li>3 Домашних задания</li>
+            <li>Секретные фишки</li>
+
+          </ul>
+        </div>
+        <div class="bottom-part">
+          <h1>30$</h1>
+{#          <a class="price-btn text-uppercase" href="{% url "pateik:payment" pk=3 %}">Тренироваться</a>#}
+        </div>
+      </div>
+      <div
+        style="border-radius: 0 15px 15px 0;"
+        class="col-lg-3 col-md-6 single-price"
+      >
+        <div class="top-part">
+          <h1 class="package-no">04</h1>
+          <h4>VIP</h4>
+          <p style="font-family: 'Open Sans SemiBold';" class="mt-10">
+            16 Тренировок
+          </p>
+        </div>
+        <div class="package-list">
+          <ul>
+            <li>Медиа продвижение</li>
+            <li>Поддержка на турнире</li>
+            <li>Закрытый чат учеников</li>
+
+          </ul>
+        </div>
+        <div class="bottom-part">
+          <h1>50$</h1>
+{#          <a class="price-btn text-uppercase" href="{% url "pateik:payment" pk=4 %}">Тренироваться</a>#}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End price Area -->
+
+<!-- Комментарии -->
+{#<section class="testimonial-area section-gap">#}
+{#  <div class="container">#}
+{#    <div class="row d-flex justify-content-center">#}
+{#      <div class="menu-content pb-70 col-lg-8">#}
+{#        <div class="title text-center">#}
+{#          <h1 class="mb-10">Client’s Feedback About Me</h1>#}
+{#          <p>#}
+{#            It is very easy to start smoking but it is an uphill task to quit#}
+{#            it. Ask any chain smoker or even a person.#}
+{#          </p>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="row">#}
+{#      <div class="active-testimonial">#}
+{#        <div class="single-testimonial item d-flex flex-row">#}
+{#          <div class="thumb">#}
+{#            <img#}
+{#              class="img-fluid"#}
+{#              src="../static/img/elements/user1.png"#}
+{#              alt=""#}
+{#            />#}
+{#          </div>#}
+{#          <div class="desc">#}
+{#            <p>#}
+{#              Do you want to be even more successful? Learn to love learning and#}
+{#              growth. The more effort you put into improving your skills, the#}
+{#              bigger the payoff you.#}
+{#            </p>#}
+{#            <h4>Harriet Maxwell</h4>#}
+{#            <p>CEO at Google</p>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="single-testimonial item d-flex flex-row">#}
+{#          <div class="thumb">#}
+{#            <img#}
+{#              class="img-fluid"#}
+{#              src="../static/img/elements/user2.png"#}
+{#              alt=""#}
+{#            />#}
+{#          </div>#}
+{#          <div class="desc">#}
+{#            <p>#}
+{#              A purpose is the eternal condition for success. Every former#}
+{#              smoker can tell you just how hard it is to stop smoking#}
+{#              cigarettes. However.#}
+{#            </p>#}
+{#            <h4>Carolyn Craig</h4>#}
+{#            <p>CEO at Facebook</p>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</section>#}
+<!-- Конец комментов  -->
+
+<!-- Start portfolio-area Area -->
+<section class="portfolio-area section-gap" id="portfolio">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">Наши последние тренировки</h1>
+          <p>Ознакомься как будет проходить занятия</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="filters">
+      <ul>
+        <li style="font-family: 'Open Sans SemiBold'" class="active" data-filter="*">Все</li>
+        <li style="font-family: 'Open Sans SemiBold'" data-filter=".training">Тренировки</li>
+        <li style="font-family: 'Open Sans SemiBold'" data-filter=".tournaments">Турниры</li>
+        <li style="font-family: 'Open Sans SemiBold'" data-filter=".eSports">Киберспорт</li>
+      </ul>
+    </div>
+
+    <div style="color: #0f192a;" class="filters-content">
+      <div class="row grid">
+        <div
+          style="color: #0f192a;"
+          class="single-portfolio col-sm-4 all training"
+        >
+          <div style="color: #0f192a;" class="relative">
+            <div style="color: #0f192a;" class="thumb">
+              <div style="color: #0f192a;" class="overlay overlay-bg"></div>
+              <img
+                style="color: #0f192a;"
+                class="image img-fluid"
+                src="../static/img/p1.jpeg"
+                alt=""
+              />
+            </div>
+            <a
+              href="https://youtu.be/RSQI7FUQIl8"
+              class="img-pop-up"
+              target="_blank"
+            >
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img style="border-radius: 20px" src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all training">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img class="image img-fluid" src="../static/img/p6.jpeg" alt="" />
+            </div>
+            <a
+              href="https://youtu.be/9w7iMei__mQ"
+              class="img-pop-up"
+              target="_blank"
+            >
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all training">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img class="image img-fluid" src="../static/img/p2.jpeg" alt="" />
+            </div>
+            <a
+              href="https://youtu.be/IY-kGIr9GGg"
+              class="img-pop-up"
+              target="_blank"
+            >
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all eSports">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img class="image img-fluid" src="../static/img/p3.jpeg" alt="" />
+            </div>
+            <a href="https://youtu.be/GNczYo3VuZU" class="img-pop-up" target="_blank">
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all eSports">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img class="image img-fluid" src="../static/img/p4.jpeg" alt="" />
+            </div>
+            <a href="https://youtu.be/NbY5Ga5RARA" class="img-pop-up" target="_blank">
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all tournaments">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img
+                style="background-color: #0f192a;"
+                class="image img-fluid"
+                src="../static/img/p5.jpeg"
+                alt=""
+              />
+            </div>
+            <a href="https://youtu.be/aghmswE0v0k" class="img-pop-up" target="_blank">
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+        <div class="single-portfolio col-sm-4 all tournaments">
+          <div class="relative">
+            <div class="thumb">
+              <div class="overlay overlay-bg"></div>
+              <img
+                style="background-color: #0f192a;"
+                class="image img-fluid"
+                src="../static/img/p7.jpeg"
+                alt=""
+              />
+            </div>
+            <a href="https://youtu.be/6BOdvFBD7hw" class="img-pop-up" target="_blank">
+              <div class="middle">
+                <div class="text align-self-center d-flex">
+                  <img src="../static/img/preview.png" alt="" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="p-inner">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End portfolio-area Area -->
+
+<!-- Start brands Area -->
+<section class="brands-area">
+  <div class="container">
+    <div class="brand-wrap">
+      <div
+        class="row align-items-center active-brand-carusel justify-content-start no-gutters"
+      >
+        <div class="col single-brand">
+          <a href="https://www.twitch.tv/pate1k">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="/static/img/icons8-twitch.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="https://www.youtube.com/@pate1k">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="/static/img/icons8-ютуб%20(1).svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="https://twitter.com/Pate1k_">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="../static/img/icons8-твиттер.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="https://www.instagram.com/pate1k/">
+            <img style="width: 40px;height: 80px" class="mx-auto" src="../static/img/icons8-instagram.svg" alt="" />
+          </a>
+        </div>
+        <div class="col single-brand">
+          <a href="https://t.me/pate1kkk">
+            <img style="width: 40px;height: 80px"  class="mx-auto" src="../static/img/icons8-телеграмма-app.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End brands Area -->
+
+{% endblock %}

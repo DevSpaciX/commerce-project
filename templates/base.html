@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="anypay-verification" content="252e31583852126a3a8654cc4e39">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="/static/img/letter-p.png">
+		<!-- Author Meta -->
+		<meta name="author" content="colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>Pate1k -  Тренировки</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="/static/css/linearicons.css">
+			<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+			<link rel="stylesheet" href="/static/css/bootstrap.css">
+			<link rel="stylesheet" href="/static/css/magnific-popup.css">
+			<link rel="stylesheet" href="/static/css/animate.min.css">
+			<link rel="stylesheet" href="/static/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/css/payment.css">
+  <link rel="stylesheet" href="/static/js/main.js">
+  <link rel="stylesheet" href="/static/css/linearicons.css">
+  <link rel="stylesheet" href="/static/img/l5.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap" rel="stylesheet">
+
+    {% block css %}
+      <link href="{% static "css/payment.css" %}" rel="stylesheet" media="all">
+      <link href="{% static "css/linearicons.css" %}" rel="stylesheet" media="all">
+
+      <link href="{% static "css/main.css" %}" rel="stylesheet" media="all">
+
+    {% endblock css %}
+		</head>
+		<body style="background: rgb(15,25,42);
+background: linear-gradient(180deg, rgba(15,25,42,1) 0%, rgba(35,19,66,1) 33%, rgba(48,20,103,1) 72%, rgba(4,9,30,1) 100%);">
+		  <header id="header">
+		    <div class="container main-menu">
+		    	<div class="row align-items-center justify-content-between d-flex">
+			      <div id="logo">
+{#			        <h4 style="color: black"><a href="{% url "pateik:main-page" %}">Pate1k</a></h4>#}
+{#			      </div>#}
+{#			      <nav id="nav-menu-container">#}
+{#			        <ul class="nav-menu">#}
+{#			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:main-page" %}">Главная</a></li>#}
+{#			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:about" %}">Обо мне</a></li>#}
+{#			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="https://t.me/pateeee1k">Поддержка</a></li>#}
+{#			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:price" %}">Тарифы</a></li>#}
+{#                <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:payment" pk=2 %}">Тренироваться</a></li>#}
+			        </ul>
+			      </nav><!-- #nav-menu-container -->
+		    	</div>
+		    </div>
+		  </header><!-- #header -->
+      {% block content %}
+
+      {% endblock %}
+
+
+
+    	<script src="/static/js/vendor/jquery-2.2.4.min.js"></script>
+			<script src="/static/js/popper.min.js"></script>
+			<script src="/static/js/vendor/bootstrap.min.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+  		<script src="/static/js/easing.min.js"></script>
+			<script src="/static/js/hoverIntent.js"></script>
+			<script src="/static/js/superfish.min.js"></script>
+			<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+			<script src="/static/js/jquery.magnific-popup.min.js"></script>
+    	<script src="/static/js/jquery.tabs.min.js"></script>
+			<script src="/static/js/jquery.nice-select.min.js"></script>
+      <script src="/static/js/isotope.pkgd.min.js"></script>
+			<script src="/static/js/waypoints.min.js"></script>
+			<script src="/static/js/jquery.counterup.min.js"></script>
+			<script src="/static/js/simple-skillbar.js"></script>
+			<script src="/static/js/owl.carousel.min.js"></script>
+			<script src="/static/js/mail-script.js"></script>
+			<script src="/static/js/main.js"></script>
+		</body>
+	</html>

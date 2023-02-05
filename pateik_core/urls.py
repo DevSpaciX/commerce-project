@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-from Pateik.Pateik_project import settings
+from pateik_core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
