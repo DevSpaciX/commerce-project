@@ -21,36 +21,27 @@
 				<div class="container">
           <div class="wrapper wrapper--w780">
             <div class="card card-3">
-                <div class="card-heading">
+                <div  style="background: url('{{ user.image.url }}')top left/cover no-repeat;;" class="card-profile-heading" >
                   <ul class="slots-list"></ul>
                 </div>
                 <div class="card-body">
-                    <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
                   <br>
 
 
  {#   -------------------USER NAME--------------------- #}
+                              <h5>
+                                <li>Твоё имя : {{ user.username }}</li>
+                                <li style="margin-bottom: 140px">{% if user.training_paid %}
+                                  {{ user.training_paid }}
+                                  {% else %}
+                                  У тебя пока нет купленных тренировок
+                                  {% endif %}
+                                </li>
+                              </h5>
 
-                              Твоё имя : {{ user.username }}
-
-{#   -------------------CHOSE DATE--------------------- #}
-
-
-{#   -------------------CHOSE TIME--------------------- #}
-
-                        <div class="input-group">
-                                {{ form.time }}
-                              <div class="select-dropdown"></div>
-                            </div>
-
-{#   -------------------DISCORD--------------------- #}
-
-                        <div class="input-group" >
-                              {{ form.discord }}
-                        </div>
 
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button"><a style="color: #FFFFFF" href="http://127.0.0.1:8000/#price-area">Тренироваться</a></button>
                         </div>
                 </div>
             </div>

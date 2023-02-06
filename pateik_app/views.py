@@ -1,7 +1,8 @@
 from datetime import datetime
 
 import stripe
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -16,7 +17,7 @@ from pateik_core import settings
 
 
 # Create your views here.
-
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def main_page(request):
     training_plan = TrainingPlan.objects.all()
@@ -28,6 +29,7 @@ class AboutPage(generic.TemplateView):
     template_name = "about.html"
 
 
+@login_required
 def payment_view(request, pk):
     train = TrainingPlan.objects.get(pk=pk)
     form = PaymentForm(request.POST or None)
@@ -110,20 +112,19 @@ def load_times(request):
     return render(request, "drop_down_time.html", {"times": times})
 
 class CreateUser(generic.View):
-
     def get(self,request):
         form = CustomUserCreationForm()
         context = {"form":form}
         return render(request,"registration/registration.html",context=context)
     def post(self,request):
-        form = CustomUserCreationForm(request.POST or None)
+        form = CustomUserCreationForm(request.POST)
         if not form.is_valid():
-            # print(form)
+            form = CustomUserCreationForm(request.POST)
             print(form.errors)
-            context = {'errors':dict(form.errors)}
+            context = {'form':form,'errors':dict(form.errors)}
             return render(request, "registration/registration.html", context=context)
         else:
-            form.save(self)
+            form.save()
             username = self.request.POST["username"]
             password = self.request.POST["password1"]
             image = self.request.FILES
@@ -131,32 +132,26 @@ class CreateUser(generic.View):
             login(self.request, user)
             return HttpResponseRedirect(reverse("pateik:main-page"))
 
-        # return render(request,"registration/registration.html")
+def login_view(request):
+    if request.method == "GET":
+        return render(request, "registration/login.html")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
 
+        if user:
+            login(request, user)
+            return HttpResponseRedirect(reverse("pateik:main-page"))
+        else:
+            error_context = {"errors": "invalid data"}
+            return render(request, "registration/login.html", context=error_context)
 
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(CreateUser, self).get_context_data(**kwargs)
-    #     context['password1'] = self.
-    #     return context
-
-    # def form_valid(self, form):
-    #     form.save()
-    #     username = self.request.POST["username"]
-    #     password = self.request.POST["password1"]
-    #     image = self.request.FILES
-    #     user = authenticate(username=username, password=password, image=image)
-    #     login(self.request, user)
-    #     return HttpResponseRedirect(reverse("pateik:main-page"))
-    #
-    # def form_invalid(self, form):
-    #     self.extra_context["password1_errors"] = form.errors
-    #     return HttpResponseRedirect(reverse("pateik:register-page"))
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("pateik:main-page"))
 
 class Profile(generic.TemplateView):
     template_name = "profile.html"
-    # def get(self, request, *args, **kwargs):
-    #     user = request.user.username
-    #     context = {"user":user}
-    #     return render(request,context=context)
+
 

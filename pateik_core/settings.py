@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,9 +125,14 @@ STATIC_ROOT = "frontend/"
 STATICFILES_DIRS = [
     "static",
 ]
-
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+STRIPE_SECRET_KEY = "sk_test_51MRyslKDczZ74E9anUtqmZvN3bUubk1NPoiHb1twZq2EtHyt4SZM2L8T9ZvPwdDOlnA6GbKdNlfskBbI0iUOCL0i00DP5Gi0yg"
+STRIPE_ENDPOINT_SECRET = "whsec_d37f7dd461760acc5b615a412f3b082d40299c04c9d9eedcb7edb101bafbb531"

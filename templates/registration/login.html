@@ -7,7 +7,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Регистрация
+								Вход
 							</h1>
 						</div>
 					</div>
@@ -24,7 +24,7 @@
                   <ul class="slots-list"></ul>
                 </div>
                 <div class="card-body">
-                    <h4 style="font-family: 'Open Sans SemiBold'">Регистрация</h4>
+                    <h4 style="font-family: 'Open Sans SemiBold'">Вход</h4>
                   <br>
                     <form method="POST"  class="form" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -32,48 +32,36 @@
 
 
  {#   -------------------USER NAME--------------------- #}
-                        <div class="input-group" >
-                              {{ form.username }}
+                        <div class="input-group">
+                          <input type="text" class="input--style-3" placeholder="Username" name="username">
                         </div>
 
 {#   -------------------CHOSE DATE--------------------- #}
-
-                        <div class="input-group">
-
-                      {% render_field  form.password1 class="input--style-3" placeholder="Password" %}
-                          {% if error %}
-                        {{ error }}
-                    {% endif %}
-                        </div>
+{##}
+{#                        <div class="input-group">#}
+{##}
+{#                      {% render_field  form.password1 class="input--style-3" placeholder="Username" %}#}
+{#                          {% if error %}#}
+{#                        {{ error }}#}
+{#                    {% endif %}#}
+{#                        </div>#}
 
 {#   -------------------CHOSE TIME--------------------- #}
 
                         <div class="input-group">
-                            {% render_field form.password2 class="input--style-3" placeholder="Confirm Password" %}
-
+                          <input type="password" class="input--style-3" placeholder="Password" name="password">
                         </div>
+                    <p style="color: gray">Ещё нет аккаунта ? <a href="{% url "pateik:register-page" %}">Зарегистрируйся</a></p>
 {#                      {% if form.password1.errors %}#}
 {#                        {% for %}#}
 {#                        {{ form.password1.errors }}#}
 {#                      {% endif %}#}
 
 {#   -------------------DISCORD--------------------- #}
-
-                        <label class="btn btn-outline-secondary btn-lg">
-
-                          {% if form.image %}
-                          Выбери фото
-                            {% else %}
-                          Фото выбрано
-                          {% endif %}
-                          {{ form.image }}
-                        </label>
                     {% if errors %}
-                      {% for key,value in errors.items %}
                         <div class="alert alert-danger">
-                          <strong>{{ value }}</strong>
+                          <strong>{{ errors }}</strong>
                       </div>
-                      {% endfor %}
                     {% endif %}
 
                         <div class="p-t-10">

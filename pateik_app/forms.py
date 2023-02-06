@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from rest_framework import serializers
 
 from pateik_app.models import Payment, Time, Customer
 
@@ -32,8 +33,8 @@ class PaymentForm(forms.ModelForm):
             self.fields["time"].queryset = self.instance.country.time_set
 
 class CustomUserCreationForm(forms.ModelForm):
-    password1 = forms.CharField()
-    password2 = forms.CharField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = Customer
         fields  = (
@@ -44,14 +45,15 @@ class CustomUserCreationForm(forms.ModelForm):
 
         )
         widgets = {
-            "username": forms.TextInput(attrs={"class": "input--style-3", "placeholder": "Имя"}),
-            "image": forms.FileInput(attrs={'style':'display: none;','class':'btn btn--pill btn--green', 'required': True, }
-         )
+            "username": forms.TextInput(attrs={"class": "input--style-3", "placeholder": "Name"}),
+            "image": forms.FileInput(attrs={'style':'display: none;', 'required': True, })
         }
+
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Error"
-            )
+            raise ValidationError("Пароли должны совпадать")
+        if len(password1) < 7:
+            raise ValidationError("Пароль должен иметь 8 символов")
         return password2

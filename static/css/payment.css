@@ -513,6 +513,14 @@ input {
   width: 50%;
   position: relative;
 }
+.card-3 .card-profile-heading {
+  background: url("../img/2023-01-24_23-33.png") center center/cover no-repeat;
+  -webkit-mask-image:-webkit-gradient(linear, left top ,right bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  display: table-cell;
+  width: 50%;
+  position: relative;
+}
 
 .slots-list {
   border-radius: 10px;

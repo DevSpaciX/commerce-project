@@ -36,9 +36,8 @@ class Payment(models.Model):
 
 
 class Customer(AbstractUser):
-    name = models.CharField(max_length=15, null=False)
     image = models.ImageField(upload_to="images/", default="hqdefault.jpg")
-    training_paid = models.ForeignKey(TrainingPlan,on_delete=models.CASCADE,related_name="training_plan",null=True)
+    training_paid = models.ForeignKey(TrainingPlan,on_delete=models.CASCADE,related_name="training_plan",null=True,blank=True)
 
 class Training(models.Model):
     name = models.CharField(max_length=35)

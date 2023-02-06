@@ -56,9 +56,15 @@ background: linear-gradient(180deg, rgba(15,25,42,1) 0%, rgba(35,19,66,1) 33%, r
 			        <ul class="nav-menu">
 			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:main-page" %}">Главная</a></li>
 			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:about-page" %}">Обо мне</a></li>
-			          <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="https://t.me/pateeee1k">Поддержка</a></li>
                 <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:payment" pk=2 %}">Тренироваться</a></li>
-                <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:register-page" %}">Вход</a></li>
+
+                {% if user.is_authenticated %}
+                  <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:logout" %}">Выход</a></li>
+                  <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:profile" %}">Профиль</a></li>
+                  {% else %}
+                  <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:register-page" %}">Регистрация</a></li>
+                <li><a style="font-family: 'Noto Sans Display Medium',sans-serif;" href="{% url "pateik:login-page" %}">Вход</a></li>
+                {% endif %}
 			        </ul>
 			      </nav><!-- #nav-menu-container -->
 		    	</div>
