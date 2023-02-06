@@ -27,20 +27,14 @@
                 <div class="card-body">
                     <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
                   <br>
-                    <form method="POST" id="paymentForm" data-times-url="{% url 'pateik:ajax_load_times' %}" class="form">
-                    {% csrf_token %}
+
 
  {#   -------------------USER NAME--------------------- #}
-{#                        <div class="input-group" >#}
+
                               Твоё имя : {{ user.username }}
-{#                        </div>#}
 
 {#   -------------------CHOSE DATE--------------------- #}
 
-                        <div class="input-group" >
-                                  {{ form.day }}
-                              <div class="select-dropdown"></div>
-                            </div>
 
 {#   -------------------CHOSE TIME--------------------- #}
 
@@ -58,8 +52,6 @@
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
                         </div>
-                    </form>
-
                 </div>
             </div>
         </div>

@@ -31,15 +31,27 @@ class PaymentForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields["time"].queryset = self.instance.country.time_set
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(forms.ModelForm):
+    password1 = forms.CharField()
+    password2 = forms.CharField()
     class Meta:
         model = Customer
-        fields = UserCreationForm.Meta.fields = (
+        fields  = (
             "username",
             "image",
+            "password1",
+            "password2",
+
         )
         widgets = {
             "username": forms.TextInput(attrs={"class": "input--style-3", "placeholder": "Имя"}),
             "image": forms.FileInput(attrs={'style':'display: none;','class':'btn btn--pill btn--green', 'required': True, }
          )
         }
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Error"
+            )
+        return password2

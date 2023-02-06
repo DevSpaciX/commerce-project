@@ -32,9 +32,6 @@
                   <br>
                     <form method="POST"  class="form" enctype="multipart/form-data">
                     {% csrf_token %}
-                      {% if form.errors %}
-                      {{ error }}
-                      {% endif %}
 
 
 
@@ -47,21 +44,22 @@
 
                         <div class="input-group">
 
-                      {% render_field form.password1 class="input--style-3" placeholder="Password" %}
-{#                        {{ form.password1 }}#}
-                          {% if password1.errors %}
-                        Please correct errors in the password1.
+                      {% render_field  form.password1 class="input--style-3"  %}
+                          {% if error %}
+                        {{ error }}
                     {% endif %}
                         </div>
 
 {#   -------------------CHOSE TIME--------------------- #}
 
                         <div class="input-group">
-                            {% render_field form.password2 type="password" class="input--style-3" placeholder="Confirm Password" %}
-                          {% if password2.errors %}
-                        Please correct errors in the Second Form.
-                    {% endif %}
+                            {% render_field  form.password2 class="input--style-3"  %}
+
                         </div>
+{#                      {% if form.password1.errors %}#}
+{#                        {% for %}#}
+{#                        {{ form.password1.errors }}#}
+{#                      {% endif %}#}
 
 {#   -------------------DISCORD--------------------- #}
 
@@ -69,8 +67,12 @@
                             Выбери фото
                           {{ form.image }}
                         </label>
-                    {% if second_form.errors %}
-                        Please correct errors in the Second Form.
+                    {% if errors %}
+                      {% for key,value in errors.items %}
+                        <div class="alert alert-danger">
+                          <strong>{{ value}}</strong>
+                      </div>
+                      {% endfor %}
                     {% endif %}
 
                         <div class="p-t-10">

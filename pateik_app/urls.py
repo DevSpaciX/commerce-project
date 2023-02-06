@@ -8,6 +8,8 @@ from pateik_core import settings
 
 urlpatterns = [
     path("", main_page, name="main-page"),
+    path("profile/", Profile.as_view(), name="profile"),
+
     path("registration/", CreateUser.as_view(), name="register-page"),
     path("about/", AboutPage.as_view(), name="about-page"),
     path("payment/<int:pk>/", payment_view, name="payment"),
