@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from pateik_app.models import Day, Time, Payment, TrainingPlan, Training
+from pateik_app.models import Day, Time, Payment, TrainingPlan, Training, Customer
 
 admin.site.register(Day)
 admin.site.register(Time)
 admin.site.register(Payment)
+admin.site.register(Customer)
 admin.site.register(Training)
 admin.site.register(TrainingPlan)

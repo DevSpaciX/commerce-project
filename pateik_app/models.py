@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -32,6 +34,11 @@ class Payment(models.Model):
     time = models.ForeignKey(Time, on_delete=models.SET_NULL, null=True)
     price = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE)
 
+
+class Customer(AbstractUser):
+    name = models.CharField(max_length=15, null=False)
+    image = models.ImageField(upload_to="images/", default="hqdefault.jpg")
+    training_paid = models.ForeignKey(TrainingPlan,on_delete=models.CASCADE,related_name="training_plan",null=True)
 
 class Training(models.Model):
     name = models.CharField(max_length=35)

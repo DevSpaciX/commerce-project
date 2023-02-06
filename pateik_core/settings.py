@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure--w+&w=@tc&$n^k5cwkj+vs^(-a0z&w_067!siu69!@))5e78j=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = "pateik_app.Customer"
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "pateik_app",
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +92,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "Options":{
+            "min_length":10
+        }
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
@@ -121,6 +125,7 @@ STATIC_ROOT = "frontend/"
 STATICFILES_DIRS = [
     "static",
 ]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Тренироваться
+							</h1>
+              <h5 style="margin-top: 10px">
+                Твой тариф {{ train.plan }} выбери время и день для старта!<br>
+                К оплате - {{ train.price }} $
+              </h5>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+          <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading">
+                  <ul class="slots-list"></ul>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
+                  <br>
+                    <form method="POST"  class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      {% if form.errors %}
+                      {{ error }}
+                      {% endif %}
+
+
+
+ {#   -------------------USER NAME--------------------- #}
+                        <div class="input-group" >
+                              {{ form.username }}
+                        </div>
+
+{#   -------------------CHOSE DATE--------------------- #}
+
+                        <div class="input-group">
+
+                      {% render_field form.password1 class="input--style-3" placeholder="Password" %}
+{#                        {{ form.password1 }}#}
+                          {% if password1.errors %}
+                        Please correct errors in the password1.
+                    {% endif %}
+                        </div>
+
+{#   -------------------CHOSE TIME--------------------- #}
+
+                        <div class="input-group">
+                            {% render_field form.password2 type="password" class="input--style-3" placeholder="Confirm Password" %}
+                          {% if password2.errors %}
+                        Please correct errors in the Second Form.
+                    {% endif %}
+                        </div>
+
+{#   -------------------DISCORD--------------------- #}
+
+                        <label class="btn btn-outline-secondary btn-lg">
+                            Выбери фото
+                          {{ form.image }}
+                        </label>
+                    {% if second_form.errors %}
+                        Please correct errors in the Second Form.
+                    {% endif %}
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit"> Подтвердить</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+			</section>
+			<!-- Start faq Area -->
+{% endblock %}

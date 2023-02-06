@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Профиль
+							</h1>
+              <h5 style="margin-top: 10px">
+              </h5>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+          <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading">
+                  <ul class="slots-list"></ul>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
+                  <br>
+                    <form method="POST" id="paymentForm" data-times-url="{% url 'pateik:ajax_load_times' %}" class="form">
+                    {% csrf_token %}
+
+ {#   -------------------USER NAME--------------------- #}
+{#                        <div class="input-group" >#}
+                              Твоё имя : {{ user.username }}
+{#                        </div>#}
+
+{#   -------------------CHOSE DATE--------------------- #}
+
+                        <div class="input-group" >
+                                  {{ form.day }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------CHOSE TIME--------------------- #}
+
+                        <div class="input-group">
+                                {{ form.time }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------DISCORD--------------------- #}
+
+                        <div class="input-group" >
+                              {{ form.discord }}
+                        </div>
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+			</section>
+
+			<!-- Start faq Area -->
+
+{% endblock %}
