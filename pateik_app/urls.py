@@ -13,6 +13,8 @@ urlpatterns = [
     path("registration/", CreateUser.as_view(), name="register-page"),
     path("about/", AboutPage.as_view(), name="about-page"),
     path("payment/<int:pk>/", payment_view, name="payment"),
+    path("payment-success/", payment_success, name="payment-success"),
+    path("payment-denied/", payment_denied, name="payment-denied"),
     path("ajax/load-cities/", load_times, name="ajax_load_times"),
     path("login/", login_view, name="login-page"),
     path("webhook/", stripe_webhook),

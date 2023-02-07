@@ -21,7 +21,8 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def main_page(request):
     training_plan = TrainingPlan.objects.all()
-    context = {"plan": training_plan}
+    users = Customer.objects.all().count()
+    context = {"plan": training_plan,"users":users}
     return render(request, template_name="index.html", context=context)
 
 
@@ -33,14 +34,13 @@ class AboutPage(generic.TemplateView):
 def payment_view(request, pk):
     train = TrainingPlan.objects.get(pk=pk)
     form = PaymentForm(request.POST or None)
+
     if request.method == "POST":
         if form.is_valid():
-
             YOUR_DOMAIN = "http://127.0.0.1:8000/"
-
             day = datetime.strptime(str(form.cleaned_data.get("day")),"%d %b, %Y")
             day = day.strftime("%Y-%m-%d")
-            name = form.cleaned_data.get("name")
+            name = request.user.username
             discord = form.cleaned_data.get("discord")
             time = str(form.cleaned_data.get("time"))
             time = datetime.strptime(time,"%H:%M").time().strftime("%H")
@@ -70,6 +70,7 @@ def payment_view(request, pk):
                 cancel_url=YOUR_DOMAIN + "/payment-denied/",
             )
             return redirect(checkout_session.url, code=303)
+        return render(request, "payment_form.html", {"form": form,"errors":dict(form.errors),"train":train })
     return render(request, "payment_form.html", {"form": form,"train":train })
 
 @csrf_exempt
@@ -94,16 +95,24 @@ def stripe_webhook(request):
         time = session["metadata"]["time"]
         social = session["metadata"]["discord"]
         username = session["metadata"]["username"]
-        plan = session["metadata"]["plan_id"]
+        plan_id = session["metadata"]["plan_id"]
         Training.objects.create(
-            name=username , social=social,day_train=str(day),time_train=str(time),plan_id=plan
+            name=username , social=social,day_train=str(day),time_train=str(time),plan_id=plan_id
         )
         Time.objects.filter(day__date=day).all().filter(time_start__hour=time).delete()
+        user = Customer.objects.get(username=username)
+        user.training_paid_id = plan_id
+        user.save()
         if not Time.objects.filter(day__date=day).all():
             Day.objects.filter(date=day).delete()
     return HttpResponse(status=200)
 
+def payment_success(request):
+    return render(request,"payment-success.html")
 
+
+def payment_denied(request):
+    return render(request,"payment-denied.html")
 
 # AJAX
 def load_times(request):
@@ -120,17 +129,15 @@ class CreateUser(generic.View):
         form = CustomUserCreationForm(request.POST)
         if not form.is_valid():
             form = CustomUserCreationForm(request.POST)
-            print(form.errors)
             context = {'form':form,'errors':dict(form.errors)}
             return render(request, "registration/registration.html", context=context)
-        else:
-            form.save()
-            username = self.request.POST["username"]
-            password = self.request.POST["password1"]
-            image = self.request.FILES
-            user = authenticate(username=username, password=password, image=image)
-            login(self.request, user)
-            return HttpResponseRedirect(reverse("pateik:main-page"))
+        form.save()
+        username = self.request.POST["username"]
+        password = self.request.POST["password1"]
+        image = self.request.FILES
+        user = authenticate(username=username, password=password, image=image)
+        login(self.request, user)
+        return HttpResponseRedirect(reverse("pateik:main-page"))
 
 def login_view(request):
     if request.method == "GET":
@@ -143,9 +150,8 @@ def login_view(request):
         if user:
             login(request, user)
             return HttpResponseRedirect(reverse("pateik:main-page"))
-        else:
-            error_context = {"errors": "invalid data"}
-            return render(request, "registration/login.html", context=error_context)
+        error_context = {"errors": "invalid data"}
+        return render(request, "registration/login.html", context=error_context)
 
 def logout_view(request):
     logout(request)

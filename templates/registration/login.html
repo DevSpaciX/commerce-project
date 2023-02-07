@@ -36,28 +36,12 @@
                           <input type="text" class="input--style-3" placeholder="Username" name="username">
                         </div>
 
-{#   -------------------CHOSE DATE--------------------- #}
-{##}
-{#                        <div class="input-group">#}
-{##}
-{#                      {% render_field  form.password1 class="input--style-3" placeholder="Username" %}#}
-{#                          {% if error %}#}
-{#                        {{ error }}#}
-{#                    {% endif %}#}
-{#                        </div>#}
-
-{#   -------------------CHOSE TIME--------------------- #}
-
                         <div class="input-group">
                           <input type="password" class="input--style-3" placeholder="Password" name="password">
                         </div>
                     <p style="color: gray">Ещё нет аккаунта ? <a href="{% url "pateik:register-page" %}">Зарегистрируйся</a></p>
-{#                      {% if form.password1.errors %}#}
-{#                        {% for %}#}
-{#                        {{ form.password1.errors }}#}
-{#                      {% endif %}#}
 
-{#   -------------------DISCORD--------------------- #}
+{#   -------------------ERRORS--------------------- #}
                     {% if errors %}
                         <div class="alert alert-danger">
                           <strong>{{ errors }}</strong>

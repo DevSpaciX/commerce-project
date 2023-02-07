@@ -10,10 +10,10 @@ from pateik_app.models import Payment, Time, Customer
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
-        fields = ("name", "discord", "day", "time")
+        fields = ("discord", "day", "time")
         widgets = {
-            "name": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Имя"}),
-            "discord": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Telegram"}),
+            # "name": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Имя"}),
+            "discord": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Telegram/Discord"}),
             "day": forms.Select(attrs={"class": "input--style-3","type":"date"}),
             "time": forms.Select(attrs={"class": "input--style-3", "type": "time"}),
         }
@@ -31,6 +31,12 @@ class PaymentForm(forms.ModelForm):
                 pass
         elif self.instance.pk:
             self.fields["time"].queryset = self.instance.country.time_set
+
+    def clean_discord(self):
+        discord = self.cleaned_data.get("discord")
+        if len(discord) > 15:
+            raise ValidationError("Ваши контакты слишком длинные")
+        return discord
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)

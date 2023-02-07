@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" href="../static/css/payment-result.css" />
+<section class="payment-result">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6">
+        <div class="payment-result__content">
+          <div class="payment-result__icon">
+            <svg
+              id="Layer_1"
+              style="enable-background: new 0 0 128 128;"
+              version="1.1"
+              viewBox="0 0 128 128"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <style type="text/css">
+                .st0 {
+                  fill: #31af91;
+                }
+                .st1 {
+                  fill: #ffffff;
+                }
+              </style>
+              <g><circle class="st0" cx="64" cy="64" r="64" /></g>
+              <g>
+                <path
+                  class="st1"
+                  d="M54.3,97.2L24.8,67.7c-0.4-0.4-0.4-1,0-1.4l8.5-8.5c0.4-0.4,1-0.4,1.4,0L55,78.1l38.2-38.2   c0.4-0.4,1-0.4,1.4,0l8.5,8.5c0.4,0.4,0.4,1,0,1.4L55.7,97.2C55.3,97.6,54.7,97.6,54.3,97.2z"
+                />
+              </g>
+            </svg>
+          </div>
+          <h2 class="payment-result__title">Оплата успешна</h2>
+          <p class="payment-result__text">Наш менеджер скоро свяжется с вами</p>
+          <a href="{% url "pateik:main-page" %}" class="payment-result__btn primary-btn">На главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

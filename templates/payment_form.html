@@ -33,9 +33,9 @@
                     {% csrf_token %}
 
  {#   -------------------USER NAME--------------------- #}
-                        <div class="input-group" >
-                              {{ form.name }}
-                        </div>
+{#                        <div class="input-group" >#}
+{#                              {{ form.name }}#}
+{#                        </div>#}
 
 {#   -------------------CHOSE DATE--------------------- #}
 
@@ -56,6 +56,13 @@
                         <div class="input-group" >
                               {{ form.discord }}
                         </div>
+                    {% if errors %}
+                      {% for key,value in errors.items %}
+                        <div class="alert alert-danger">
+                          <strong>{{ value }}</strong>
+                      </div>
+                      {% endfor %}
+                    {% endif %}
 
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
