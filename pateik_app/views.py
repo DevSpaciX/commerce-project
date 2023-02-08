@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
 
 from pateik_app.forms import PaymentForm, CustomUserCreationForm
-from pateik_app.models import TrainingPlan, Training, Time, Day, Customer
+from pateik_app.models import TrainingPlan, Training, Time, Day, Customer, Payment
 from pateik_core import settings
 
 
@@ -99,7 +99,8 @@ def stripe_webhook(request):
         Training.objects.create(
             name=username , social=social,day_train=str(day),time_train=str(time),plan_id=plan_id
         )
-        Time.objects.filter(day__date=day).all().filter(time_start__hour=time).delete()
+
+        Time.objects.filter(day__date=day).filter(time_start__hour=time).delete()
         user = Customer.objects.get(username=username)
         user.training_paid_id = plan_id
         user.save()

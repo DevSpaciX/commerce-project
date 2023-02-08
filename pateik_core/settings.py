@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--w+&w=@tc&$n^k5cwkj+vs^(-a0z&w_067!siu69!@))5e78j="
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -134,5 +138,5 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-STRIPE_SECRET_KEY = "sk_test_51MRyslKDczZ74E9anUtqmZvN3bUubk1NPoiHb1twZq2EtHyt4SZM2L8T9ZvPwdDOlnA6GbKdNlfskBbI0iUOCL0i00DP5Gi0yg"
-STRIPE_ENDPOINT_SECRET = "whsec_d37f7dd461760acc5b615a412f3b082d40299c04c9d9eedcb7edb101bafbb531"
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+STRIPE_ENDPOINT_SECRET = env("STRIPE_ENDPOINT_SECRET")
