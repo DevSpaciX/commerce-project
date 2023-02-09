@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 
-from pateik_app.models import Payment, Time, Customer
+from pateik_app.models import Payment, DateTime, Customer
 
 
 class PaymentForm(forms.ModelForm):
@@ -20,13 +20,13 @@ class PaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["time"].queryset = Time.objects.none()
+        self.fields["time"].queryset = DateTime.objects.none()
         self.fields["day"].empty_label = "Выберите день"
 
         if "day" in self.data:
             try:
                 day_id = int(self.data.get("day"))
-                self.fields["time"].queryset = Time.objects.filter(day_id=day_id)
+                self.fields["time"].queryset = DateTime.objects.filter(day_id=day_id)
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
@@ -35,7 +35,7 @@ class PaymentForm(forms.ModelForm):
     def clean_discord(self):
         discord = self.cleaned_data.get("discord")
         if len(discord) > 15:
-            raise ValidationError("Ваши контакты слишком длинные")
+            raise ValidationError("Your contact data is too long")
         return discord
 
 
@@ -67,7 +67,7 @@ class CustomUserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Пароли должны совпадать")
+            raise ValidationError("Passwords must match")
         if len(password1) < 7:
-            raise ValidationError("Пароль должен иметь 8 символов")
+            raise ValidationError("Password should contain minimum 8 characters")
         return password2

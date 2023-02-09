@@ -23,4 +23,4 @@ To make payment through Stripe work for you:
 2. Get your secret and public api keys
 3. Configure the Stripe request handler (webhook)  how to do it is described here: https://stripe.com/docs/stripe-cli#install
 4. Here is full tutorial if you got problems : https://testdriven.io/blog/django-stripe-tutorial/
-5. IMPORTANT! Paste your keys into settings or .env.sample file to load secret information from 
+5. IMPORTANT! Paste your keys into settings or .env.sample file to load secret information from AND RENAME FILE TO .env !

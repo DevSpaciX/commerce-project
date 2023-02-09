@@ -11,8 +11,8 @@ class Day(models.Model):
         return self.date.strftime("%d %b, %Y")
 
 
-class Time(models.Model):
-    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+class DateTime(models.Model):
+    day = models.ForeignKey(Day, on_delete=models.CASCADE,related_name="days")
     time_start = models.TimeField()
 
     def __str__(self):
@@ -30,9 +30,9 @@ class TrainingPlan(models.Model):
 class Payment(models.Model):
     name = models.CharField(max_length=15, null=False)
     discord = models.CharField(max_length=30, null=False)
-    day = models.ForeignKey(Day, on_delete=models.SET_NULL, null=True)
-    time = models.ForeignKey(Time, on_delete=models.SET_NULL, null=True)
-    price = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE)
+    day = models.ForeignKey(Day, on_delete=models.SET_NULL, null=True,related_name="training_day")
+    time = models.ForeignKey(DateTime, on_delete=models.SET_NULL, null=True,related_name="training_time")
+    price = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE,related_name="training_price")
 
 
 class Customer(AbstractUser):
@@ -40,7 +40,7 @@ class Customer(AbstractUser):
     training_paid = models.ForeignKey(
         TrainingPlan,
         on_delete=models.CASCADE,
-        related_name="training_plan",
+        related_name="customers",
         null=True,
         blank=True,
     )
@@ -51,7 +51,7 @@ class Training(models.Model):
     social = models.CharField(max_length=35)
     day_train = models.CharField(max_length=10)
     time_train = models.CharField(max_length=10)
-    plan = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE)
+    plan = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE,related_name="training_plan")
 
     def __str__(self):
         return f"{self.name} {self.plan}"

@@ -15,7 +15,7 @@ urlpatterns = [
     path("payment/<int:pk>/", payment_view, name="payment"),
     path("payment-success/", payment_success, name="payment-success"),
     path("payment-denied/", payment_denied, name="payment-denied"),
-    path("ajax/load-cities/", load_times, name="ajax_load_times"),
+    path("ajax/load-times/", load_times, name="ajax_load_times"),
     path("login/", login_view, name="login-page"),
     path("webhook/", stripe_webhook),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
