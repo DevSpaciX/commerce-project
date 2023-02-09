@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 
-from pateik_app.models import Payment, DateTime, Customer
+from pateik_app.models import Payment, AvailableTime, Customer
 
 
 class PaymentForm(forms.ModelForm):
@@ -20,13 +20,13 @@ class PaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["time"].queryset = DateTime.objects.none()
+        self.fields["time"].queryset = AvailableTime.objects.none()
         self.fields["day"].empty_label = "Выберите день"
 
         if "day" in self.data:
             try:
                 day_id = int(self.data.get("day"))
-                self.fields["time"].queryset = DateTime.objects.filter(day_id=day_id)
+                self.fields["time"].queryset = AvailableTime.objects.filter(day_id=day_id)
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:

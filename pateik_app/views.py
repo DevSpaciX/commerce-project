@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
 
 from pateik_app.forms import PaymentForm, CustomUserCreationForm
-from pateik_app.models import TrainingPlan, Training, DateTime, Day, Customer, Payment
+from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment
 from pateik_core import settings
 
 
@@ -110,11 +110,11 @@ def stripe_webhook(request):
             plan_id=plan_id,
         )
 
-        DateTime.objects.filter(day__date=day).filter(time_start__hour=time).delete()
+        AvailableTime.objects.filter(day__date=day).filter(time_start__hour=time).delete()
         user = Customer.objects.get(username=username)
         user.training_paid_id = plan_id
         user.save()
-        if not DateTime.objects.filter(day__date=day).exists():
+        if not AvailableTime.objects.filter(day__date=day).exists():
             Day.objects.filter(date=day).delete()
     return HttpResponse(status=200)
 
@@ -130,7 +130,7 @@ def payment_denied(request):
 # AJAX
 def load_times(request):
     day_id = request.GET.get("day")
-    times = DateTime.objects.filter(day_id=day_id).all()
+    times = AvailableTime.objects.filter(day_id=day_id).all()
     return render(request, "drop_down_time.html", {"times": times})
 
 

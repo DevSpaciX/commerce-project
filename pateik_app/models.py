@@ -11,7 +11,7 @@ class Day(models.Model):
         return self.date.strftime("%d %b, %Y")
 
 
-class DateTime(models.Model):
+class AvailableTime(models.Model):
     day = models.ForeignKey(Day, on_delete=models.CASCADE,related_name="days")
     time_start = models.TimeField()
 
@@ -31,7 +31,7 @@ class Payment(models.Model):
     name = models.CharField(max_length=15, null=False)
     discord = models.CharField(max_length=30, null=False)
     day = models.ForeignKey(Day, on_delete=models.SET_NULL, null=True,related_name="training_day")
-    time = models.ForeignKey(DateTime, on_delete=models.SET_NULL, null=True,related_name="training_time")
+    time = models.ForeignKey(AvailableTime, on_delete=models.SET_NULL, null=True,related_name="training_time")
     price = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE,related_name="training_price")
 
 
