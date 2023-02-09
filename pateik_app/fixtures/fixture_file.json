@@ -1,0 +1,84 @@
+[
+{
+    "model": "pateik_app.day",
+    "pk": 1,
+    "fields": {
+        "date": "2023-02-23"
+    }
+},
+{
+    "model": "pateik_app.day",
+    "pk": 2,
+    "fields": {
+        "date": "2023-02-21"
+    }
+},
+{
+    "model": "pateik_app.time",
+    "pk": 1,
+    "fields": {
+        "day": 1,
+        "time_start": "11:57:36"
+    }
+},
+{
+    "model": "pateik_app.time",
+    "pk": 2,
+    "fields": {
+        "day": 2,
+        "time_start": "11:57:52"
+    }
+},
+{
+    "model": "pateik_app.trainingplan",
+    "pk": 1,
+    "fields": {
+        "plan": "Test",
+        "price": 10
+    }
+},
+{
+    "model": "pateik_app.trainingplan",
+    "pk": 2,
+    "fields": {
+        "plan": "Basic",
+        "price": 20
+    }
+},
+{
+    "model": "pateik_app.trainingplan",
+    "pk": 3,
+    "fields": {
+        "plan": "Pro",
+        "price": 30
+    }
+},
+{
+    "model": "pateik_app.trainingplan",
+    "pk": 4,
+    "fields": {
+        "plan": "VIP",
+        "price": 50
+    }
+},
+{
+    "model": "pateik_app.customer",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$zeJ9Wd5BzaMdFBFHs0oDMA$mm4ppa1R/m+4jelY/q+bfdEBmsAYNN6YNDp9f0o6mBs=",
+        "last_login": "2023-02-09T09:56:47Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-02-09T09:56:32Z",
+        "image": "images/44350383_2206456769425863_2989025164722700288_n_uc5MzAS.jpg",
+        "training_paid": null,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
