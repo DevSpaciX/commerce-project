@@ -1,8 +1,6 @@
 from django import forms
-from django.contrib.auth import password_validation
-from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from rest_framework import serializers
+
 
 from pateik_app.models import Payment, Time, Customer
 
@@ -13,15 +11,17 @@ class PaymentForm(forms.ModelForm):
         fields = ("discord", "day", "time")
         widgets = {
             # "name": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Имя"}),
-            "discord": forms.TextInput(attrs={"class": "input--style-3","placeholder":"Telegram/Discord"}),
-            "day": forms.Select(attrs={"class": "input--style-3","type":"date"}),
+            "discord": forms.TextInput(
+                attrs={"class": "input--style-3", "placeholder": "Telegram/Discord"}
+            ),
+            "day": forms.Select(attrs={"class": "input--style-3", "type": "date"}),
             "time": forms.Select(attrs={"class": "input--style-3", "type": "time"}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["time"].queryset = Time.objects.none()
-        self.fields['day'].empty_label = "Выберите день"
+        self.fields["day"].empty_label = "Выберите день"
 
         if "day" in self.data:
             try:
@@ -38,21 +38,29 @@ class PaymentForm(forms.ModelForm):
             raise ValidationError("Ваши контакты слишком длинные")
         return discord
 
+
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = Customer
-        fields  = (
+        fields = (
             "username",
             "image",
             "password1",
             "password2",
-
         )
         widgets = {
-            "username": forms.TextInput(attrs={"class": "input--style-3", "placeholder": "Name"}),
-            "image": forms.FileInput(attrs={'style':'display: none;', 'required': True, })
+            "username": forms.TextInput(
+                attrs={"class": "input--style-3", "placeholder": "Name"}
+            ),
+            "image": forms.FileInput(
+                attrs={
+                    "style": "display: none;",
+                    "required": True,
+                }
+            ),
         }
 
     def clean_password2(self):
