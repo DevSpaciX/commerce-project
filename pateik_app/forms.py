@@ -4,7 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 
-from pateik_app.models import Payment, AvailableTime, Customer, AvailableSlots
+from pateik_app.models import Payment, AvailableTime, Customer
 
 
 class PaymentForm(forms.ModelForm):
@@ -22,18 +22,15 @@ class PaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["time"].queryset = AvailableSlots.objects.none()
-        # self.fields["day"].queryset = AvailableSlots.objects.dates('slots', 'day')
-        self.fields["day"].empty_label = "Выберите день"
+        self.fields["time"].queryset = AvailableTime.objects.none()
+        self.fields["day"].empty_label = "Choose day"
 
-        # if "day" in self.data:
-        #     try:
-        #         day = datetime.strptime(str(self.data.get("day")), "%Y-%M-%d")
-        #         self.fields["time"].queryset = AvailableSlots.objects.filter(slots__day=day)
-        #     except (ValueError, TypeError):
-        #         pass
-        # elif self.instance.pk:
-        #     self.fields["time"].queryset = self.instance.country.time_set
+        if "day" in self.data:
+            try:
+                day_id = int(self.data.get("day"))
+                self.fields["time"].queryset = AvailableTime.objects.filter(day_id=day_id)
+            except (ValueError, TypeError):
+                pass
 
     def clean_discord(self):
         discord = self.cleaned_data.get("discord")
@@ -60,8 +57,7 @@ class CustomUserCreationForm(forms.ModelForm):
             ),
             "image": forms.FileInput(
                 attrs={
-                    "style": "display: none;",
-                    "required": True,
+                    "style""class":"btn btn-outline-secondary btn-lg","required":True
                 }
             ),
         }
@@ -74,3 +70,10 @@ class CustomUserCreationForm(forms.ModelForm):
         if len(password1) < 7:
             raise ValidationError("Password should contain minimum 8 characters")
         return password2
+    
+    def save(self, commit=True):
+        user = super().save(commit)
+        user.set_password(self.cleaned_data["password1"])
+        user.image = self.cleaned_data["image"]
+        user.save()
+        return user

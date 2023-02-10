@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
 
 from pateik_app.forms import PaymentForm, CustomUserCreationForm
-from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment, AvailableSlots
+from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment
 from pateik_core import settings
 
 
@@ -41,12 +41,12 @@ def payment_view(request, pk):
             YOUR_DOMAIN = settings.ACTUAL_DOMAIN_URL
             print("FORM")
             print(form.cleaned_data.get("time"))
-            # day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
-            # day = day.strftime("%Y-%m-%d")
-            # name = request.user.username
-            # discord = form.cleaned_data.get("discord")
-            # time = str(form.cleaned_data.get("time"))
-            # time = datetime.strptime(time, "%H:%M").time().strftime("%H")
+            day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
+            day = day.strftime("%Y-%m-%d")
+            name = request.user.username
+            discord = form.cleaned_data.get("discord")
+            time = str(form.cleaned_data.get("time"))
+            time = datetime.strptime(time, "%H:%M").time().strftime("%H")
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=[
@@ -134,18 +134,8 @@ def payment_denied(request):
 
 # AJAX
 def load_times(request):
-    print(AvailableSlots.objects.all())
-    day = datetime.strptime(str(request.GET.get("day")), "%d %b, %Y %H:%M")
-    day = day.strftime("%Y-%m-%d")
-    print(AvailableSlots.objects.filter(slots__date=day))
-    # self.fields["day"].queryset = AvailableSlots.objects.dates('slots', 'day')
-
-    all_days = AvailableSlots.objects.all()
-    times = AvailableSlots.objects.filter(slots__date=day)
-    # for i in times:
-    #     print(i)
-    #     # i.strftime("%H")
-    #     # print(i)
+    day_id = request.GET.get("day")
+    times = AvailableTime.objects.filter(day_id=day_id).all()
     return render(request, "drop_down_time.html", {"times": times})
 
 
@@ -156,16 +146,12 @@ class CreateUser(generic.View):
         return render(request, "registration/registration.html", context=context)
 
     def post(self, request):
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST,request.FILES)
         if not form.is_valid():
             form = CustomUserCreationForm(request.POST)
             context = {"form": form, "errors": dict(form.errors)}
             return render(request, "registration/registration.html", context=context)
-        form.save()
-        username = self.request.POST["username"]
-        password = self.request.POST["password1"]
-        image = self.request.FILES
-        user = authenticate(username=username, password=password, image=image)
+        user = form.save()
         login(self.request, user)
         return HttpResponseRedirect(reverse("pateik:main-page"))
 

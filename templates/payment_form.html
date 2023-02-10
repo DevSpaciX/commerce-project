@@ -6,11 +6,11 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Тренироваться
+								Start training!
 							</h1>
               <h5 style="margin-top: 10px">
-                Твой тариф {{ train.plan }} выбери время и день для старта!<br>
-                К оплате - {{ train.price }} $
+                Your plan {{ train.plan }} choose day and time!<br>
+                For payment - {{ train.price }} $
               </h5>
 						</div>
 					</div>
@@ -27,7 +27,7 @@
                   <ul class="slots-list"></ul>
                 </div>
                 <div class="card-body">
-                    <h4 style="font-family: 'Open Sans SemiBold'">Выбери дату старта!</h4>
+                    <h4 style="font-family: 'Open Sans SemiBold'">Choose start date!</h4>
                   <br>
                     <form method="POST" id="paymentForm" data-times-url="{% url 'pateik:ajax_load_times' %}" class="form">
                     {% csrf_token %}
@@ -65,7 +65,7 @@
                     {% endif %}
 
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Оплата</button>
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Payment</button>
                         </div>
                     </form>
 
@@ -81,40 +81,43 @@
           <div class="col-lg-8">
           <dl class="accordion">
             <dt>
-              <a href="">Могу ли я взять Дуо напарника?</a>
+              <a href="">
+                Can I take a Duo partner?</a>
             </dt>
             <dd>
-              Да , только если твой тариф - Базовый и выше
+
+Yes, only if your tariff is Basic and above
             </dd>
             <dt>
-              <a href="">Я выбрал несколько тренировок , когда будет следующая?</a>
+              <a href="">I have chosen several workouts, when is the next one?</a>
             </dt>
             <dd>
-              При выборе Тарифа Про и выше - бронируется только первая тренировка . Остальные планируются индивидуально с тренером в конце первой тренировки
+If you choose Tariff Pro and above - only the first training is booked. The rest are planned individually with the trainer at the end of the first training session.            </dd>
+            <dt>
+              <a href="">What platform can you use?</a>
+            </dt>
+            <dd>
+              Training can take place on any platform!
             </dd>
             <dt>
-              <a href="">С какой платформы можно заниматься?</a>
+              <a href="">I don't have Discord, where will the communication be?</a>
             </dt>
             <dd>
-              Тренировки могут проходить на любой платформе!
+              Communication during training will take place in the voice chat of the game or in Discord
             </dd>
             <dt>
-              <a href="">У меня нет Дискорда , где будет коммуникация?</a>
+              <a href="">
+                Can I get a refund for training?</a>
             </dt>
             <dd>
-              Коммуникация во время тренировке будет проходить в голосовом чате игры или в Дискорд
+It is impossible to return the funds, but we give a 100% guarantee that all workouts will be successfully completed
             </dd>
             <dt>
-              <a href="">Можно ли вернуть деньги за тренировки?</a>
+              <a href="">I accidentally entered incorrect contact information, what should I do?</a>
             </dt>
             <dd>
-              Вернуть средства невозможно , но мы даём 100% гарантию ,что все тренировки будут успешно выполнены
-            </dd>
-            <dt>
-              <a href="">Я случайно указал не верные  контактные данные , что делать?</a>
-            </dt>
-            <dd>
-              Если вдруг вы указали неверные контактные данные - свяжись с нашей поддержкой <a target="_blank" href="https://t.me/pateeee1k">t.me/pateeee1k</a> - мы будем рады тебе помочь
+              If suddenly you have provided incorrect contact details - contact our support <a target="_blank" href="#">support</a> -
+we will be happy to help you
             </dd>
           </dl>
 
@@ -127,14 +130,12 @@
               jQuery(document).ready(function($){
                 $("#id_day").change(function () {
                   const url = $("#paymentForm").attr("data-times-url");
-                  const dayId = $(this).find(":selected").text();
-
+                  const dayId = $(this).val();
                 $.ajax({
                     url: url,
                     data: {
                         'day': dayId
                     },
-
                     success: function (data) {
                         console.log(data)
                         $("#id_time").html(data);
@@ -142,10 +143,6 @@
                 });
               });
             });
-            </script>
-
-            <script>
-
             </script>
   <script type="text/javascript">
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;

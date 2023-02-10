@@ -35,11 +35,11 @@
               </g>
             </svg>
           </div>
-          <h2 class="payment-result__title">Платёж отклонён</h2>
-          <p class="payment-result__text">Произошла ошибка во время оплаты...</p>
+          <h2 class="payment-result__title">Payment denied...</h2>
+          <p class="payment-result__text">An error occurred during payment...</p>
           <div class="payment-result__buttnons">
-            <a href="{% url "pateik:main-page" %}" class="payment-result__btn primary-btn">На главную</a>
-            <a href="{% url "pateik:payment" pk=2 %}" class="btn btn--pill btn--green">Повторить платёж</a>
+            <a href="{% url "pateik:main-page" %}" class="payment-result__btn primary-btn">Home</a>
+            <a href="{% url "pateik:payment" pk=2 %}" class="btn btn--pill btn--green">Try again</a>
           </div>
         </div>
       </div>

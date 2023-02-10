@@ -1,5 +1,5 @@
-<option value="">Выберите время</option>
+<option value="">Choose time</option>
 
 {% for time in times %}
-<option value="{{ time.pk }}">{{ time }}</option>
+<option value="{{ time.pk }}">{{ time.time_start|date:"G:i" }}</option>
 {% endfor %}

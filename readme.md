@@ -8,10 +8,9 @@ To start my project locally you need write some simple commands:
 5. python3 manage.py loaddata fixture_file.json 
 6. python3 manage.py runserver
 
-If you want to create more data just run python manage.py createsuperuser and login by your username/password 
-OR you can use fixture superuser : 
+If you want to create more data just login by this superuser data :
 username : admin
-password : admin
+password: admin 
 
   In .env.sample you have 3 variables : 
 - STRIPE_SECRET_KEY ( need to stripe payment work fine ),

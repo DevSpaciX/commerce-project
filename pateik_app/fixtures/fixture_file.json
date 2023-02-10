@@ -1,32 +1,25 @@
 [
 {
     "model": "pateik_app.day",
-    "pk": 1,
+    "pk": 2,
     "fields": {
         "date": "2023-02-23"
     }
 },
 {
-    "model": "pateik_app.day",
-    "pk": 2,
-    "fields": {
-        "date": "2023-02-21"
-    }
-},
-{
-    "model": "pateik_app.time",
-    "pk": 1,
-    "fields": {
-        "day": 1,
-        "time_start": "11:57:36"
-    }
-},
-{
-    "model": "pateik_app.time",
+    "model": "pateik_app.availabletime",
     "pk": 2,
     "fields": {
         "day": 2,
-        "time_start": "11:57:52"
+        "time_start": "20:06:39"
+    }
+},
+{
+    "model": "pateik_app.availabletime",
+    "pk": 3,
+    "fields": {
+        "day": 2,
+        "time_start": "12:00:00"
     }
 },
 {
@@ -49,7 +42,7 @@
     "model": "pateik_app.trainingplan",
     "pk": 3,
     "fields": {
-        "plan": "Pro",
+        "plan": "Premium",
         "price": 30
     }
 },
@@ -57,7 +50,7 @@
     "model": "pateik_app.trainingplan",
     "pk": 4,
     "fields": {
-        "plan": "VIP",
+        "plan": "Vip",
         "price": 50
     }
 },
@@ -65,8 +58,8 @@
     "model": "pateik_app.customer",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$390000$zeJ9Wd5BzaMdFBFHs0oDMA$mm4ppa1R/m+4jelY/q+bfdEBmsAYNN6YNDp9f0o6mBs=",
-        "last_login": "2023-02-09T09:56:47Z",
+        "password": "pbkdf2_sha256$390000$BIIanMHVngUD0U1azKNUdW$+OJwmSScyrPryJ3o4aXsuwU+a+oufBON0fhbGlfI5VU=",
+        "last_login": "2023-02-10T18:06:23.476Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -74,11 +67,102 @@
         "email": "",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2023-02-09T09:56:32Z",
-        "image": "images/44350383_2206456769425863_2989025164722700288_n_uc5MzAS.jpg",
+        "date_joined": "2023-02-10T14:13:16Z",
+        "image": "images/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-h_zH8c8uD.png",
+        "training_paid": 4,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "pateik_app.customer",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$4wwsyhfELsBPvFOpJbwYaf$TTFFSnMuvF/uACxbUBLplQgvH1Qa7ZKLozJnfio+JnA=",
+        "last_login": "2023-02-10T15:49:57.383Z",
+        "is_superuser": false,
+        "username": "Spacix123",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-02-10T15:49:56.684Z",
+        "image": "pngwing.com.png",
         "training_paid": null,
         "groups": [],
         "user_permissions": []
+    }
+},
+{
+    "model": "pateik_app.customer",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$CSPT8Az3tybcmCDknKVRBJ$9AncUeiRGdEp2cGlYrcaLDg7EExFW9HqjEh7EfuVGN8=",
+        "last_login": "2023-02-10T15:51:13.388Z",
+        "is_superuser": false,
+        "username": "asdasdasd",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-02-10T15:51:12.780Z",
+        "image": "pngwing.com.png",
+        "training_paid": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "pateik_app.customer",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$laF9RmCpsQVDMHCDGLWlXL$isP7BG3c1LtYAUlOmqq3QUsMkuM3RUzYxEcspB89bNo=",
+        "last_login": "2023-02-10T17:59:05.865Z",
+        "is_superuser": false,
+        "username": "Bohdan",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-02-10T17:59:05.151Z",
+        "image": "pngwing.com.png",
+        "training_paid": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "pateik_app.customer",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$K89NeiW0sSOI0kfGScUfSl$8hv+U5UV9rMGuOS7injv9xA8T2eS0vG/qBSy1PtbRwc=",
+        "last_login": "2023-02-10T18:01:23.079Z",
+        "is_superuser": false,
+        "username": "asdasd",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-02-10T18:01:22.360Z",
+        "image": "images/FNCS_SeasonX_5oviGmH.png",
+        "training_paid": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "pateik_app.training",
+    "pk": 1,
+    "fields": {
+        "name": "admin",
+        "social": "asdasda",
+        "day_train": "2023-02-14",
+        "time_train": "19",
+        "plan": 4
     }
 }
 ]

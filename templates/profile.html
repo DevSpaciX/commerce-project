@@ -6,7 +6,7 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Профиль
+								Profile
 							</h1>
               <h5 style="margin-top: 10px">
               </h5>
@@ -30,19 +30,24 @@
 
  {#   -------------------USER NAME--------------------- #}
                               <h5>
-                                <li>Твоё имя : {{ user.username }}</li>
+                                <li>Your name : {{ user.username }}</li>
                                 <li style="margin-bottom: 140px">{% if user.training_paid %}
-                                  План тренировки :{{ user.training_paid }}
+                                  Training plan :{{ user.training_paid }}
                                   {% else %}
-                                  У тебя пока нет купленных тренировок
+                                  You don`t have any trainings (
                                   {% endif %}
                                 </li>
                               </h5>
 
-
+                        {% if user.training_paid %}
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button"><a style="color: #FFFFFF" href="http://127.0.0.1:8000/#price-area">Тренироваться</a></button>
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button"><a style="color: #FFFFFF" href="http://127.0.0.1:8000/#price-area">Update plan</a></button>
                         </div>
+                          {% else %}
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button"><a style="color: #FFFFFF" href="http://127.0.0.1:8000/#price-area">Start!</a></button>
+                        </div>
+                        {% endif %}
                 </div>
             </div>
         </div>
