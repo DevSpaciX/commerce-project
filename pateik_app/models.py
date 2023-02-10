@@ -12,12 +12,17 @@ class Day(models.Model):
 
 
 class AvailableTime(models.Model):
-    day = models.ForeignKey(Day, on_delete=models.CASCADE,related_name="days")
-    time_start = models.TimeField()
+    slots = models.DateTimeField()
 
     def __str__(self):
-        return self.time_start.strftime("%H:%M")
+        return self.slots.strftime("%d %b, %Y %H:%M")
 
+
+class AvailableSlots(models.Model):
+    slots = models.DateTimeField()
+
+    def __str__(self):
+        return self.slots.strftime("%d %b, %Y %H:%M")
 
 class TrainingPlan(models.Model):
     plan = models.CharField(max_length=15)
@@ -30,8 +35,8 @@ class TrainingPlan(models.Model):
 class Payment(models.Model):
     name = models.CharField(max_length=15, null=False)
     discord = models.CharField(max_length=30, null=False)
-    day = models.ForeignKey(Day, on_delete=models.SET_NULL, null=True,related_name="training_day")
-    time = models.ForeignKey(AvailableTime, on_delete=models.SET_NULL, null=True,related_name="training_time")
+    day = models.ForeignKey(AvailableSlots, on_delete=models.SET_NULL, null=True,related_name="training_day")
+    time = models.ForeignKey(AvailableSlots, on_delete=models.SET_NULL, null=True,related_name="training_time")
     price = models.ForeignKey(TrainingPlan, on_delete=models.CASCADE,related_name="training_price")
 
 

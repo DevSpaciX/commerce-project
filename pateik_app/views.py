@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.db.models.functions import Trunc
 import stripe
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import FormMixin
 
 from pateik_app.forms import PaymentForm, CustomUserCreationForm
-from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment
+from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment, AvailableSlots
 from pateik_core import settings
 
 
@@ -39,12 +39,14 @@ def payment_view(request, pk):
     if request.method == "POST":
         if form.is_valid():
             YOUR_DOMAIN = settings.ACTUAL_DOMAIN_URL
-            day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
-            day = day.strftime("%Y-%m-%d")
-            name = request.user.username
-            discord = form.cleaned_data.get("discord")
-            time = str(form.cleaned_data.get("time"))
-            time = datetime.strptime(time, "%H:%M").time().strftime("%H")
+            print("FORM")
+            print(form.cleaned_data.get("time"))
+            # day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
+            # day = day.strftime("%Y-%m-%d")
+            # name = request.user.username
+            # discord = form.cleaned_data.get("discord")
+            # time = str(form.cleaned_data.get("time"))
+            # time = datetime.strptime(time, "%H:%M").time().strftime("%H")
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=[
@@ -71,6 +73,9 @@ def payment_view(request, pk):
                 cancel_url=YOUR_DOMAIN + "/payment-denied/",
             )
             return redirect(checkout_session.url, code=303)
+
+        print(form.cleaned_data.get("day"))
+        print(form.cleaned_data.get("time"))
         return render(
             request,
             "payment_form.html",
@@ -129,8 +134,18 @@ def payment_denied(request):
 
 # AJAX
 def load_times(request):
-    day_id = request.GET.get("day")
-    times = AvailableTime.objects.filter(day_id=day_id).all()
+    print(AvailableSlots.objects.all())
+    day = datetime.strptime(str(request.GET.get("day")), "%d %b, %Y %H:%M")
+    day = day.strftime("%Y-%m-%d")
+    print(AvailableSlots.objects.filter(slots__date=day))
+    # self.fields["day"].queryset = AvailableSlots.objects.dates('slots', 'day')
+
+    all_days = AvailableSlots.objects.all()
+    times = AvailableSlots.objects.filter(slots__date=day)
+    # for i in times:
+    #     print(i)
+    #     # i.strftime("%H")
+    #     # print(i)
     return render(request, "drop_down_time.html", {"times": times})
 
 

@@ -127,14 +127,16 @@
               jQuery(document).ready(function($){
                 $("#id_day").change(function () {
                   const url = $("#paymentForm").attr("data-times-url");
-                  const dayId = $(this).val();
+                  const dayId = $(this).find(":selected").text();
 
                 $.ajax({
                     url: url,
                     data: {
                         'day': dayId
                     },
+
                     success: function (data) {
+                        console.log(data)
                         $("#id_time").html(data);
                     }
                 });

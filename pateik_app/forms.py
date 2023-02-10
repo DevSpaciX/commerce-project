@@ -1,8 +1,10 @@
+from datetime import datetime
+
 from django import forms
 from django.core.exceptions import ValidationError
 
 
-from pateik_app.models import Payment, AvailableTime, Customer
+from pateik_app.models import Payment, AvailableTime, Customer, AvailableSlots
 
 
 class PaymentForm(forms.ModelForm):
@@ -20,17 +22,18 @@ class PaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["time"].queryset = AvailableTime.objects.none()
+        self.fields["time"].queryset = AvailableSlots.objects.none()
+        # self.fields["day"].queryset = AvailableSlots.objects.dates('slots', 'day')
         self.fields["day"].empty_label = "Выберите день"
 
-        if "day" in self.data:
-            try:
-                day_id = int(self.data.get("day"))
-                self.fields["time"].queryset = AvailableTime.objects.filter(day_id=day_id)
-            except (ValueError, TypeError):
-                pass
-        elif self.instance.pk:
-            self.fields["time"].queryset = self.instance.country.time_set
+        # if "day" in self.data:
+        #     try:
+        #         day = datetime.strptime(str(self.data.get("day")), "%Y-%M-%d")
+        #         self.fields["time"].queryset = AvailableSlots.objects.filter(slots__day=day)
+        #     except (ValueError, TypeError):
+        #         pass
+        # elif self.instance.pk:
+        #     self.fields["time"].queryset = self.instance.country.time_set
 
     def clean_discord(self):
         discord = self.cleaned_data.get("discord")
