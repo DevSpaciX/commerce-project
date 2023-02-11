@@ -5,8 +5,7 @@ To start my project locally you need write some simple commands:
 2. source env/bin/activate (Windows : venv/Scripts/activate)
 3. pip3 install -r requirements.txt
 4. python3 manage.py migrate
-5. python3 manage.py loaddata fixture_file.json 
-6. python3 manage.py runserver
+5. python3 manage.py runserver
 
 If you want to create more data just login by this superuser data :
 username : admin

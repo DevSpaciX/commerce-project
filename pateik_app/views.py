@@ -39,14 +39,12 @@ def payment_view(request, pk):
     if request.method == "POST":
         if form.is_valid():
             YOUR_DOMAIN = settings.ACTUAL_DOMAIN_URL
-            print("FORM")
-            print(form.cleaned_data.get("time"))
             day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
             day = day.strftime("%Y-%m-%d")
             name = request.user.username
             discord = form.cleaned_data.get("discord")
-            time = str(form.cleaned_data.get("time"))
-            time = datetime.strptime(time, "%H:%M").time().strftime("%H")
+            time = datetime.strptime(str(form.cleaned_data.get("time")), "%H:%M")
+            time = time.strftime("%H")
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=[
