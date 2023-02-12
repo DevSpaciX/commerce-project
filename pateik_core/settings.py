@@ -33,7 +33,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG","") != "False"
 
 
-ALLOWED_HOSTS = ["127.0.0.1","commerce.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1","commerce-pwjx.onrender.com"]
 AUTH_USER_MODEL = "pateik_app.Customer"
 
 # Application definition
