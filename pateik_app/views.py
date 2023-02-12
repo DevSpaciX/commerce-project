@@ -1,22 +1,18 @@
 from datetime import datetime
-from django.db.models.functions import Trunc
 import stripe
-from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
-from django.views import generic, View
+from django.urls import reverse
+from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic.edit import FormMixin
+
 
 from pateik_app.forms import PaymentForm, CustomUserCreationForm
 from pateik_app.models import TrainingPlan, Training, AvailableTime, Day, Customer, Payment
 from pateik_core import settings
 
-
-# Create your views here.
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -38,7 +34,7 @@ def payment_view(request, pk):
 
     if request.method == "POST":
         if form.is_valid():
-            YOUR_DOMAIN = settings.ACTUAL_DOMAIN_URL
+            DOMAIN = settings.ACTUAL_DOMAIN_URL
             day = datetime.strptime(str(form.cleaned_data.get("day")), "%d %b, %Y")
             day = day.strftime("%Y-%m-%d")
             name = request.user.username
@@ -67,13 +63,10 @@ def payment_view(request, pk):
                     "plan_id": pk,
                 },
                 mode="payment",
-                success_url=YOUR_DOMAIN + "/payment-success/",
-                cancel_url=YOUR_DOMAIN + "/payment-denied/",
+                success_url=DOMAIN + "payment-success/",
+                cancel_url=DOMAIN + "payment-denied/",
             )
             return redirect(checkout_session.url, code=303)
-
-        print(form.cleaned_data.get("day"))
-        print(form.cleaned_data.get("time"))
         return render(
             request,
             "payment_form.html",
