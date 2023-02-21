@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Login
+							</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+          <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading">
+                  <ul class="slots-list"></ul>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-family: 'Open Sans SemiBold'">Login</h4>
+                  <br>
+                    <form method="POST"  class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+
+ {#   -------------------USER NAME--------------------- #}
+                        <div class="input-group">
+                          <input type="text" class="input--style-3" placeholder="Username" name="username">
+                        </div>
+
+                        <div class="input-group">
+                          <input type="password" class="input--style-3" placeholder="Password" name="password">
+                        </div>
+                    <p style="color: gray">Have no account? <a href="{% url "pateik:register-page" %}">Register</a></p>
+
+{#   -------------------ERRORS--------------------- #}
+                    {% if errors %}
+                        <div class="alert alert-danger">
+                          <strong>{{ errors }}</strong>
+                      </div>
+                    {% endif %}
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+			</section>
+			<!-- Start faq Area -->
+{% endblock %}

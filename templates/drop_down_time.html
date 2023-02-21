@@ -1,0 +1,5 @@
+<option value="">Choose time</option>
+
+{% for time in times %}
+<option value="{{ time.pk }}">{{ time.time_start|date:"G:i" }}</option>
+{% endfor %}

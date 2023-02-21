@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+			<!-- start banner Area -->
+			<section class="about-banner">
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Start training!
+							</h1>
+              <h5 style="margin-top: 10px">
+                Your plan {{ train.plan }} choose day and time!<br>
+                For payment - {{ train.price }} $
+              </h5>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+			<!-- Start home-about Area -->
+			<section class="home-about-area section-gap">
+				<div class="container">
+          <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading">
+                  <ul class="slots-list"></ul>
+                </div>
+                <div class="card-body">
+                    <h4 style="font-family: 'Open Sans SemiBold'">Choose start date!</h4>
+                  <br>
+                    <form method="POST" id="paymentForm" data-times-url="{% url 'pateik:ajax_load_times' %}" class="form">
+                    {% csrf_token %}
+
+ {#   -------------------USER NAME--------------------- #}
+{#                        <div class="input-group" >#}
+{#                              {{ form.name }}#}
+{#                        </div>#}
+
+{#   -------------------CHOSE DATE--------------------- #}
+
+                        <div class="input-group" >
+                                  {{ form.day }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------CHOSE TIME--------------------- #}
+
+                        <div class="input-group">
+                                {{ form.time }}
+                              <div class="select-dropdown"></div>
+                            </div>
+
+{#   -------------------DISCORD--------------------- #}
+
+                        <div class="input-group" >
+                              {{ form.discord }}
+                        </div>
+                    {% if errors %}
+                      {% for key,value in errors.items %}
+                        <div class="alert alert-danger">
+                          <strong>{{ value }}</strong>
+                      </div>
+                      {% endfor %}
+                    {% endif %}
+
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit" id="checkout-button">Payment</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        </div>
+			</section>
+
+			<!-- Start faq Area -->
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+          <dl class="accordion">
+            <dt>
+              <a href="">
+                Can I take a Duo partner?</a>
+            </dt>
+            <dd>
+
+Yes, only if your tariff is Basic and above
+            </dd>
+            <dt>
+              <a href="">I have chosen several workouts, when is the next one?</a>
+            </dt>
+            <dd>
+If you choose Tariff Pro and above - only the first training is booked. The rest are planned individually with the trainer at the end of the first training session.            </dd>
+            <dt>
+              <a href="">What platform can you use?</a>
+            </dt>
+            <dd>
+              Training can take place on any platform!
+            </dd>
+            <dt>
+              <a href="">I don't have Discord, where will the communication be?</a>
+            </dt>
+            <dd>
+              Communication during training will take place in the voice chat of the game or in Discord
+            </dd>
+            <dt>
+              <a href="">
+                Can I get a refund for training?</a>
+            </dt>
+            <dd>
+It is impossible to return the funds, but we give a 100% guarantee that all workouts will be successfully completed
+            </dd>
+            <dt>
+              <a href="">I accidentally entered incorrect contact information, what should I do?</a>
+            </dt>
+            <dd>
+              If suddenly you have provided incorrect contact details - contact our support <a target="_blank" href="#">support</a> -
+we will be happy to help you
+            </dd>
+          </dl>
+
+          </div>
+        </div>
+      </div>
+			<!-- End faq Area -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script>
+              jQuery(document).ready(function($){
+                $("#id_day").change(function () {
+                  const url = $("#paymentForm").attr("data-times-url");
+                  const dayId = $(this).val();
+                $.ajax({
+                    url: url,
+                    data: {
+                        'day': dayId
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        $("#id_time").html(data);
+                    }
+                });
+              });
+            });
+            </script>
+  <script type="text/javascript">
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+      var checkoutButton = document.getElementById("checkout-button");
+      checkoutButton.addEventListener("click", function () {
+          fetch("{% url "pateik:payment" pk=train.pk %}", {
+              method: "POST",
+              headers: {
+                  'X-CSRFToken': csrftoken
+              }
+          })
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (session) {
+                  return stripe.redirectToCheckout({sessionId: session.id});
+              })
+              .then(function (result) {
+                  if (result.error) {
+                      alert(result.error.message);
+                  }
+              })
+              .catch(function (error) {
+                  console.error("Error:", error);
+              });
+                      });
+                  </script>
+{% endblock %}
