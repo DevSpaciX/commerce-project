@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "pateik_app",
     "widget_tweaks",
-    "storages",
 ]
 
 MIDDLEWARE = [
