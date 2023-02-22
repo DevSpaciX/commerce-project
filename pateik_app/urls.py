@@ -18,10 +18,9 @@ urlpatterns = [
     path("ajax/load-times/", load_times, name="ajax_load_times"),
     path("login/", login_view, name="login-page"),
     path("webhook/", stripe_webhook),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 app_name = "pateik"
