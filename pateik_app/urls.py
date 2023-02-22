@@ -1,7 +1,9 @@
+from django.template.defaulttags import url
 from django.urls import path
 
 
 from django.conf.urls.static import static
+from django.views.static import serve
 
 from pateik_app.views import *
 from pateik_core import settings
