@@ -26,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "123"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG","") != "False"
+# DEBUG = os.environ.get("DJANGO_DEBUG","") != "False"
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1","commerce-pwjx.onrender.com"]
 AUTH_USER_MODEL = "pateik_app.Customer"
@@ -143,3 +144,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_ENDPOINT_SECRET = os.getenv("STRIPE_ENDPOINT_SECRET")
+
+DEFAULT_FILE_STORAGE = os.getenv("storages.backends.dropbox.DropBoxStorage")
+DROPBOX_OAUTH2_TOKEN = "sl.BZY71HrDMZS6jVSazsgY4ErARpiiEwTrywwKsKSG5axt4O_LPZPbQohKQJYRrBT6BstJwLv-5lrPZ3ZWzG_XMDl64BPkd2qQpwk78YK1MXnwQPfT2V5wdvQK15mAcdt3QUD36aY"
+DROPBOX_APP_KEY = "oc51cowjup39rjj"
+DROPBOX_APP_SECRET = "yi8oygcxg1xwlei"
+DROPBOX_OAUTH2_REFRESH_TOKEN = "zACu534nM3YAAAAAAAAAAUwu_Kkuerqvbq5Te76NqueKKOfzqOsyJYWelggof8sK"
+DROPBOX_ROOT_PATH = "/"
