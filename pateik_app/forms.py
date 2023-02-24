@@ -70,11 +70,12 @@ class CustomUserCreationForm(forms.ModelForm):
         if len(password1) < 7:
             raise ValidationError("Password should contain minimum 8 characters")
         return password2
-    
+
     def save(self, commit=True):
-        user = super().save(commit)
+        user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        image = self.cleaned_data["image"]
+
+        image = self.cleaned_data.get("image")
         if image:
             user.image.save(image.name, image, save=False)
 
