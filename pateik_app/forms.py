@@ -58,7 +58,7 @@ class CustomUserCreationForm(forms.ModelForm):
             "username": forms.TextInput(
                 attrs={"class": "input--style-3", "placeholder": "Name"}
             ),
-            "image": forms.ImageField(
+            "image": forms.FileInput(
                 attrs={
                     "style""class":"btn btn-outline-secondary btn-lg","required":True
                 }
