@@ -86,7 +86,14 @@ class CustomUserCreationForm(forms.ModelForm):
             # Закриття тимчасового файлу та збереження зображення
             temp_file.close()
             django_file = File(open(temp_file.name, "rb"))
-            user.image.save(image.name, django_file, save=False)
+
+            # Зберігання зображення та отримання посилання
+            image_name = os.path.basename(temp_file.name)
+            image_path = f"/{image_name}"
+            user.image.save(image_path, django_file, save=False)
+
+            # Встановлення посилання на зображення
+            user.image = image_path
 
             # Видалення тимчасового файлу
             os.unlink(temp_file.name)
