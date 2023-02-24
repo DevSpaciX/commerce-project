@@ -1,5 +1,6 @@
 from datetime import datetime
-
+import os
+import tempfile
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.files import File
@@ -77,14 +78,18 @@ class CustomUserCreationForm(forms.ModelForm):
 
         image = self.cleaned_data.get("image")
         if image:
-            # Відкриття файлу зображення і передача його в метод save
-            with open(image.file.name, "rb") as f:
-                django_file = File(f)
-                user.image.save(image.name, django_file, save=False)
+            # Створення тимчасового файлу для збереження зображення
+            _, ext = os.path.splitext(image.name)
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=ext)
+            temp_file.write(image.file.read())
 
-            # Закриття файлу зображення
-            if django_file.closed is False:
-                django_file.close()
+            # Закриття тимчасового файлу та збереження зображення
+            temp_file.close()
+            django_file = File(open(temp_file.name, "rb"))
+            user.image.save(image.name, django_file, save=False)
+
+            # Видалення тимчасового файлу
+            os.unlink(temp_file.name)
 
         if commit:
             user.save()
