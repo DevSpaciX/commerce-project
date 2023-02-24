@@ -74,6 +74,10 @@ class CustomUserCreationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit)
         user.set_password(self.cleaned_data["password1"])
-        user.image = self.cleaned_data["image"]
-        user.save()
+        image = self.cleaned_data["image"]
+        if image:
+            user.image.save(image.name, image, save=False)
+
+        if commit:
+            user.save()
         return user

@@ -147,7 +147,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 STRIPE_ENDPOINT_SECRET = os.getenv("STRIPE_ENDPOINT_SECRET")
 
-DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN = "sl.BZbeRRgSZqDV3xtJntMN3TNslfxuR6JOHkNS5CChPPbNJ3ec2Wv9oQVBvcD8voBy4nmlnMLCk7Jvmvb_S-3vJyHCp-YJaTqD_EVemu2iqK3WfUQJW-QU6XHCvLgQildoCa1ho64"
 DROPBOX_APP_KEY = "oc51cowjup39rjj"
 DROPBOX_APP_SECRET = "yi8oygcxg1xwlei"
