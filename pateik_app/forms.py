@@ -4,8 +4,10 @@ import tempfile
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.files import File
+from storages.backends import dropbox
 
 from pateik_app.models import Payment, AvailableTime, Customer
+from pateik_core import settings
 
 
 class PaymentForm(forms.ModelForm):
@@ -56,7 +58,7 @@ class CustomUserCreationForm(forms.ModelForm):
             "username": forms.TextInput(
                 attrs={"class": "input--style-3", "placeholder": "Name"}
             ),
-            "image": forms.FileInput(
+            "image": forms.ImageField(
                 attrs={
                     "style""class":"btn btn-outline-secondary btn-lg","required":True
                 }
@@ -74,31 +76,20 @@ class CustomUserCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-
-        image = self.cleaned_data.get("image")
-        if image:
-            # Створення тимчасового файлу для збереження зображення
-            _, ext = os.path.splitext(image.name)
-            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=ext)
-            temp_file.write(image.file.read())
-
-            # Закриття тимчасового файлу та збереження зображення
-            temp_file.close()
-            django_file = File(open(temp_file.name, "rb"))
-
-            # Зберігання зображення та отримання посилання
-            image_name = os.path.basename(temp_file.name)
-            image_path = f"/{image_name}"
-            user.image.save(image_path, django_file, save=False)
-
-            # Встановлення посилання на зображення
-            user.image = image_path
-
-            # Видалення тимчасового файлу
-            os.unlink(temp_file.name)
-
         if commit:
             user.save()
+
+            # зберігаємо фото на DropBox
+            access_token = settings.DROPBOX_APP_KEY
+            dbx = dropbox.Dropbox(access_token)
+
+            image = self.cleaned_data.get('image')
+            if image:
+                image_path = f"/images/{user.pk}_{image.name}"
+                dbx.files_upload(image.read(), image_path)
+
+            # оновлюємо поле зображення в об'єкті користувача
+            user.customer.image = image_path
+            user.customer.save()
 
         return user
