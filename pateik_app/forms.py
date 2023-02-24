@@ -75,21 +75,8 @@ class CustomUserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        user = super().save(commit=False)
-        if commit:
-            user.save()
-
-            # зберігаємо фото на DropBox
-            access_token = settings.DROPBOX_APP_KEY
-            dbx = dropbox.Dropbox(access_token)
-
-            image = self.cleaned_data.get('image')
-            if image:
-                image_path = f"/images/{user.pk}_{image.name}"
-                dbx.files_upload(image.read(), image_path)
-
-            # оновлюємо поле зображення в об'єкті користувача
-            user.customer.image = image_path
-            user.customer.save()
-
+        user = super().save(commit)
+        user.set_password(self.cleaned_data["password1"])
+        user.image = self.cleaned_data["image"]
+        user.save()
         return user
