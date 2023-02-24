@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django import forms
 from django.core.exceptions import ValidationError
-
+from django.core.files import File
 
 from pateik_app.models import Payment, AvailableTime, Customer
 
@@ -75,11 +75,18 @@ class CustomUserCreationForm(forms.ModelForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
 
-        if commit:
-            user.save()
-
         image = self.cleaned_data.get("image")
         if image:
-            user.image.save(image.name, image)
+            # Відкриття файлу зображення і передача його в метод save
+            with open(image.file.name, "rb") as f:
+                django_file = File(f)
+                user.image.save(image.name, django_file, save=False)
+
+            # Закриття файлу зображення
+            if django_file.closed is False:
+                django_file.close()
+
+        if commit:
+            user.save()
 
         return user
